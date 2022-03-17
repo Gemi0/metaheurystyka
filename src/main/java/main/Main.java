@@ -9,7 +9,7 @@ public class Main {
         File file = new File("C:\\Users\\Dominik\\Desktop\\studia\\4 sem\\meta\\berlin52.xml");
         createMatrix(file.getAbsolutePath(),5);
         setMatrix(file);
-        printMatrix(file);
+        printMatrix();
         printLength();
     }
 
@@ -28,7 +28,7 @@ public class Main {
         matrixBuilder.create(path,n, "ASYMMETRIC");
     }
 
-    private static void printMatrix(File file) {
+    private static void printMatrix() {
 
         //Kwadratowa tablica
         for(int i = 0; i < dm.getMatrixSize(); i++) {
