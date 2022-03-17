@@ -11,7 +11,7 @@ public class Tour {
         nodes.add(node);
     }
 
-    public double length(DistanceMatrix dm) {
+    public double length(TSPData dm) {
         nodes.add(0);
         nodes.add(1);
         nodes.add(2);
