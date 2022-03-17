@@ -33,11 +33,11 @@ public class MatrixBuilder {
             Element problem = dom.createElement("travellingSalesmanProblemInstance");
 
             Element graph = null;
-            if (type == "ASYMETRIC") {
-                graph = asymetric(dom, n);
+            if (type.equals("ASYMMETRIC")) {
+                graph = asymmetric(dom, n);
             }
-            else if (type == "SYMETRIC") {
-                graph = symetric(dom, n);
+            else if (type.equals("SYMMETRIC")) {
+                graph = symmetric(dom, n);
             }
             problem.appendChild(graph);
 
@@ -54,18 +54,16 @@ public class MatrixBuilder {
                 tr.transform(new DOMSource(dom),
                         new StreamResult(new FileOutputStream(xml)));
 
-            } catch (TransformerException te) {
+            } catch (TransformerException | IOException te) {
                 System.out.println(te.getMessage());
-            } catch (IOException ioe) {
-                System.out.println(ioe.getMessage());
             }
         } catch (ParserConfigurationException pce) {
             System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
         }
     }
 
-    private Element asymetric(Document dom, int n) {
-        Element vertex = null;
+    private Element asymmetric(Document dom, int n) {
+        Element vertex;
         Element graph = dom.createElement("graph");
 
         Random random = new Random();
@@ -86,8 +84,8 @@ public class MatrixBuilder {
         return graph;
     }
 
-    private Element symetric(Document dom, int n) {
-        Element vertex = null;
+    private Element symmetric(Document dom, int n) {
+        Element vertex;
         Element graph = dom.createElement("graph");
 
         Random random = new Random();
