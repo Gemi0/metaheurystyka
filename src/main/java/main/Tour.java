@@ -5,18 +5,25 @@ import java.util.List;
 
 public class Tour {
 
-    private final List<Integer> nodes = new ArrayList<>();
+    private List<Integer> nodes = new ArrayList<>();
+
+    public void setList(List<Integer> list) {
+        nodes = list;
+    }
 
     public void add(int node) {
         nodes.add(node);
     }
 
-    public double length(TSPData dm) {
-        nodes.add(0);
-        nodes.add(1);
-        nodes.add(2);
-        nodes.add(3);
-        nodes.add(4);
+    public int get(int node) {
+        return nodes.get(node);
+    }
+
+    public void set(int node, int value) {
+        nodes.set(node, value);
+    }
+
+    public double length(DistanceMatrix dm) {
 
         int first = -1;
         int previous = -1;
