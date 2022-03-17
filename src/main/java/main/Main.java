@@ -1,16 +1,22 @@
 package main;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
     static DistanceMatrix dm = new DistanceMatrix();
 
     public static void main(String[] args){
-        File file = new File("C:\\Users\\Dominik\\Desktop\\studia\\4 sem\\meta\\berlin52.xml");
-        createMatrix(file.getAbsolutePath(),5);
+        File file = new File("C:\\Users\\Dominik\\Desktop\\meta\\burma14.xml");
+        //createMatrix(file.getAbsolutePath(),5);
         setMatrix(file);
-        printMatrix();
-        printLength();
+        //printMatrix();
+        //printLength();
+        KRandom kRandom = new KRandom();
+        Tour tour = kRandom.kRandom(dm, 100000);
+        System.out.println("Tu" +tour.length(dm));
     }
 
     private static void printLength() {
