@@ -1,13 +1,16 @@
-package main;
+package algorithms;
+
+import main.TSPData;
+import main.Tour;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class KRandom {
-    public Tour kRandom(DistanceMatrix dm, int k) {
+    public Tour kRandom(TSPData data, int k) {
         Random rand = new Random();
-        int n = dm.getMatrixSize();
+        int n = data.distance.length;
         Tour best = null;
         for (int a =0; a <=k; a++) {
             List<Integer> arr = new ArrayList<>(n);
@@ -26,14 +29,12 @@ public class KRandom {
                 arr.set(i - 1, arr.get(r));
                 arr.set(r, tmp);
             }
-            System.out.println(arr);
             Tour tour = new Tour();
             tour.setList(arr);
-            //System.out.println(tour.length(dm));
             if (best == null) {
                 best = tour;
             }
-            else if (best.length(dm) > tour.length(dm)) {
+            else if (best.length(data) > tour.length(data)) {
                 best = tour;
             }
         }

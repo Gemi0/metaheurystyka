@@ -50,7 +50,6 @@ public class CoordsParser {
             coord_x = scanner.nextDouble();
             coord_y = scanner.nextDouble();
             coords[index] = new Point2D.Double(coord_x, coord_y);
-            System.out.println(index);
         }
 
         return coords;

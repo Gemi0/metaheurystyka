@@ -23,7 +23,7 @@ public class Tour {
         nodes.set(node, value);
     }
 
-    public double length(DistanceMatrix dm) {
+    public double length(TSPData data) {
 
         int first = -1;
         int previous = -1;
@@ -34,11 +34,11 @@ public class Tour {
                 previous = node;
             }
             else {
-                length += dm.get(previous,node);
+                length += data.distance[previous][node];
                 previous = node;
             }
         }
-        length += dm.get(previous,first);
+        length += data.distance[previous][first];
         return length;
     }
 }
