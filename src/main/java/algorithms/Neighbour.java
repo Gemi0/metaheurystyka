@@ -24,9 +24,11 @@ public class Neighbour {
                     minPos = j;
                 }
             }
-            start = minPos;
-            tourArr.add(minPos);
-            arr.remove(Integer.valueOf(minPos));
+            if (minPos != -1) {
+                start = minPos;
+                tourArr.add(minPos);
+                arr.remove(Integer.valueOf(minPos));
+            }
         }
         Tour tour = new Tour();
         tour.setList(tourArr);
