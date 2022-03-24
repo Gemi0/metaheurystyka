@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class KRandom {
-    public Tour kRandom(TSPData data, int k) {
+    public static Tour kRandom(TSPData data, int k) {
         Random rand = new Random();
         int n = data.distance.length;
         Tour best = null;

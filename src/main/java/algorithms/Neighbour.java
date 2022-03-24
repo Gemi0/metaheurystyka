@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Neighbour {
-    public Tour neighbour(TSPData data, int start) {
+    public static Tour neighbour(TSPData data, int start) {
         int n = data.distance.length;
         List<Integer> arr = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {

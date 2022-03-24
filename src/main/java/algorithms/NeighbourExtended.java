@@ -4,11 +4,10 @@ import main.TSPData;
 import main.Tour;
 
 public class NeighbourExtended {
-    Neighbour neighbour = new Neighbour();
-    Tour best = null;
-    public Tour neighbourExtended(TSPData data) {
+    public static Tour neighbourExtended(TSPData data) {
+        Tour best = null;
         for (int a = 0; a < data.distance.length; a++) {
-            Tour tour = neighbour.neighbour(data,a);
+            Tour tour = Neighbour.neighbour(data,a);
             if (best == null) {
                 best = tour;
             }
