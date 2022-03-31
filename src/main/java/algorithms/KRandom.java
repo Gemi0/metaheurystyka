@@ -8,11 +8,17 @@ import java.util.List;
 import java.util.Random;
 
 public class KRandom {
-    public Tour kRandom(TSPData data, int k) {
+    /**
+     * Generating the shortest tour using k random tours and picking the shortest.
+     * @param data distance matrix
+     * @param k number of tours generated
+     * @return shortest tour generated
+     */
+    public Tour kRandom(TSPData data, int k) { //O(k) * O(n) = O(n)
         Random rand = new Random();
         int n = data.distance.length;
         Tour best = null;
-        for (int a =0; a <=k; a++) {
+        for (int a =0; a <=k; a++) { // O(k)
             List<Integer> arr = new ArrayList<>(n);
             for (int i = 0; i < n; i++) {
                 arr.add(i);
@@ -22,7 +28,7 @@ public class KRandom {
             int tmp;
 
             //shuffle above input array
-            for (int i = n; i > 0; i--) {
+            for (int i = n; i > 0; i--) { //O(n)
                 r = rand.nextInt(i);
 
                 tmp = arr.get(i - 1);
