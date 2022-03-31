@@ -3,6 +3,7 @@ package algorithms;
 import main.TSPData;
 import main.Tour;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class TwoOpt {
@@ -11,6 +12,40 @@ public class TwoOpt {
         for(int i = 0; i < data.distance.length; i++) {
             currentPermutation[i] = i;
         }
+        double currentPermutationValue = routeLength(currentPermutation, data);
+
+        double bestPermutationValue = currentPermutationValue;
+        int bestPermutation[] = currentPermutation;
+
+        while(true) {
+            for(int i = 0; i < data.distance.length; i++) {
+                for(int j = i+1; j < data.distance.length; j++) {
+                    int newPermutation[] = invert(currentPermutation, i, j);
+                    double newPermutationValue = routeLength(newPermutation, data);
+
+                    if(newPermutationValue < bestPermutationValue) {
+                        bestPermutationValue = newPermutationValue;
+                        bestPermutation = newPermutation;
+                    }
+                }
+            }
+
+            if(bestPermutationValue >= currentPermutationValue) {
+                break;
+            }
+            currentPermutation = bestPermutation;
+            currentPermutationValue = bestPermutationValue;
+        }
+
+        Tour tour = new Tour();
+        for(int a : currentPermutation) {
+            tour.add(a);
+        }
+        return tour;
+    }
+
+    public static Tour twoOpt(TSPData data,int[] startPermutation){
+        int currentPermutation[] = Arrays.copyOf(startPermutation, startPermutation.length);
         double currentPermutationValue = routeLength(currentPermutation, data);
 
         double bestPermutationValue = currentPermutationValue;
