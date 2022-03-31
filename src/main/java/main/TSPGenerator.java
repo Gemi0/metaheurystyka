@@ -18,6 +18,9 @@ public class TSPGenerator {
                 }
             }
         }
+        for(int i = 0; i < distances.length; i++){
+            distances[i][i] = -1;
+        }
         return new TSPData(distances);
     }
 
@@ -34,6 +37,11 @@ public class TSPGenerator {
                 distances[i][j] = distances[j][i] = coords[i].distance(coords[j]);
             }
         }
+
+        for(int i = 0; i < distances.length; i++){
+            distances[i][i] = -1;
+        }
+
         return new TSPData(distances, coords);
     }
 }
