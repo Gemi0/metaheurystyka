@@ -16,7 +16,7 @@ public class SymetricTSPBenchmark extends TSPBenchmark {
 
     public SymetricTSPBenchmark(String problemName, File problemFile, double bestSolution) {
         repeats = 10;
-        names = new ArrayList<>(Arrays.asList("kRandom-10000", "neighbor", "neighborExtended", "twoOpt", "twoOptExtended"));
+        names = new ArrayList<>(Arrays.asList("kRandom-10000", "neighbor", "neighborExtended", "twoOpt", "acceleratedTwoOpt", "twoOptExtended"));
         problem = new TSPData(XMLParser.parseFile(problemFile));
         this.problemName = problemName;
         this.bestSolution = bestSolution;
@@ -30,6 +30,7 @@ public class SymetricTSPBenchmark extends TSPBenchmark {
         results.add(Benchmark.runNeighbor(problem, 0));
         results.add(Benchmark.runNeighborExtended(problem));
         results.add(Benchmark.runTwoOpt(problem));
+        results.add(Benchmark.runAcceleratedTwoOpt(problem));
         results.add(Benchmark.runExtendedNeighborIntoTwoOpt(problem));
         return results;
     }
