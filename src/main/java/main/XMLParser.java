@@ -28,8 +28,8 @@ public class XMLParser {
 
             array = new double[verticies][verticies];
             for(double[] row : array) {
-                //Arrays.fill(row, Double.MAX_VALUE);
-                Arrays.fill(row, -1.0);
+                Arrays.fill(row, Double.MAX_VALUE);
+                //Arrays.fill(row, -1.0);
             }
 
             for(int row = 0; row < verticies; row++) {

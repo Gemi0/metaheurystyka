@@ -10,7 +10,7 @@ public class CoordsParser {
     public static Point2D.Double[] parseFile(File file) {
         Scanner scanner = null;
         try {
-            scanner = new Scanner(file);
+            scanner = new Scanner(file).useLocale(Locale.US);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
