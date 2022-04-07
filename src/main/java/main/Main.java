@@ -1,43 +1,31 @@
 package main;
 
-import algorithms.KRandom;
-import algorithms.Neighbour;
-import algorithms.NeighbourExtended;
-import algorithms.TwoOpt;
-
-import java.util.Properties;
+import algorithms.*;
 
 public class Main {
 
-    static TSPData data;
-
-    public static void main(String[] args){
-        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\berlin52.xml";
-        String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\dsj1000.tsp";
-        data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
-        //data.printDistances();
-        //data.printCoords();
+    public static void main(String[] args) {
+        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\berlin52.xml";
+        String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\coords\\berlin52.tsp";
+        TSPData data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
         System.out.println(data.distance.length);
 
-        Neighbour neighbour = new Neighbour();
-        Tour tour1 = neighbour.neighbour(data, 0);
-        System.out.println(tour1.length(data));
+        int[] startPermutation = new int[data.distance.length];
+        for (int i = 0; i < data.distance.length; i++) {
+            startPermutation[i] = i;
+        }
 
-        KRandom kRandom = new KRandom();
-        Tour tour = kRandom.kRandom(data, 100000);
-        System.out.println(tour.length(data));
-
-        NeighbourExtended neighbourExtended = new NeighbourExtended();
-        Tour tour2 = neighbourExtended.neighbourExtended(data);
-        System.out.println(tour2.length(data));
-
-        System.out.println("----");
-
-        Tour tour3 = TwoOpt.twoOpt(data);
-        System.out.println(tour3.length(data));
-
-        Tour tour4 = TwoOpt.acceleratedTwoOpt(data);
-        System.out.println(tour4.length(data));
+        System.out.println("Sample run");
+        System.out.println("Distance: " + distanceFilePath);
+        System.out.println("Coords: " + coordsFilePath);
+        System.out.println();
+        System.out.println("10000-Random: " + Utils.routeLength(KRandom.kRandom(data, 10000), data));
+        System.out.println("Neighbor: " + Utils.routeLength(Neighbor.neighbor(data, 0), data));
+        System.out.println("NeighborExtended: " + Utils.routeLength(NeighborExtended.neighborExtended(data), data));
+        System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
+        System.out.println("Accelerated2OPT: " + Utils.routeLength(TwoOpt.acceleratedTwoOpt(data, startPermutation), data));
+        System.out.println("NeighborExtended->2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, NeighborExtended.neighborExtended(data)), data));
+        System.out.println();
     }
 }
 

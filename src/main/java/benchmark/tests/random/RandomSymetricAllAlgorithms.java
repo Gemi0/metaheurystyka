@@ -1,0 +1,41 @@
+package benchmark.tests.random;
+
+import benchmark.Benchmark;
+import benchmark.RandomRepeatingBenchmark;
+import main.TSPData;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class RandomSymetricAllAlgorithms extends RandomRepeatingBenchmark {
+
+    public RandomSymetricAllAlgorithms() {
+        minDistance = 1;
+        maxDistance = 10000;
+        symetric = true;
+        minN = 10;
+        maxN = 250;
+        step = 10;
+        repeats = 50;
+        names = new ArrayList<>(Arrays.asList("kRandom-10000", "neighbor", "neighborExtended", "twoOpt", "acceleratedTwoOpt"));
+
+    }
+
+    @Override
+    protected ArrayList<Benchmark.Result> singlePassWithData(TSPData problem) {
+        System.gc();
+        ArrayList<Benchmark.Result> results = new ArrayList<>();
+        results.add(Benchmark.runKRandom(problem, 10000));
+        results.add(Benchmark.runNeighbor(problem, 0));
+        results.add(Benchmark.runNeighborExtended(problem));
+        results.add(Benchmark.runTwoOpt(problem));
+        results.add(Benchmark.runAcceleratedTwoOpt(problem));
+        return results;
+    }
+
+    public static void main(String[] args) {
+        RandomSymetricAllAlgorithms benchmark = new RandomSymetricAllAlgorithms();
+        benchmark.runBenchmark();
+        benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\RandomTests\\Symetric");
+    }
+}

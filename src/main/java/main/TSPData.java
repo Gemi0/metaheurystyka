@@ -4,8 +4,6 @@ import java.awt.geom.Point2D;
 
 public class TSPData {
 
-    public static final boolean ROUNDING = true;
-
     public final double[][] distance;
     public final Point2D.Double[] coords;
 
