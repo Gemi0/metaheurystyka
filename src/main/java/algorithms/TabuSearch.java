@@ -12,15 +12,19 @@ public class TabuSearch {
 
     public static int[] tabuSearch(TSPData data, int[] startPermutation) {
         int[] currentPermutation = Arrays.copyOf(startPermutation, startPermutation.length);
-
         double bestPermutationValue = Utils.routeLength(currentPermutation, data);
+
         int[] bestPermutation = currentPermutation;
+        int[] neighbourhoodBestPermutation = currentPermutation;
+
         TabuList<Solution> tabuList = new TabuList<>(tabuListSize);
 
         int withoutUpgrade = 0;
+        double neighbourhoodBestPermutationValue;
 
-        while (withoutUpgrade < 1000) {
+        while (withoutUpgrade < 10000) {
             Solution bestSolution = null;
+            neighbourhoodBestPermutationValue = Double.MAX_VALUE;
             for (int i = 0; i < data.distance.length; i++) {
                 for (int j = i + 1; j < data.distance.length; j++) {
                     int[] newPermutation = invert(currentPermutation, i, j);
@@ -28,14 +32,17 @@ public class TabuSearch {
                     Solution solution = new Solution(i,j);
 
                     if (!tabuList.isTabu(solution)) {
-                        if (newPermutationValue < bestPermutationValue) {
+                        if (newPermutationValue < neighbourhoodBestPermutationValue) {
                             bestSolution = solution;
-                            bestPermutationValue = newPermutationValue;
-                            bestPermutation = newPermutation;
-                            withoutUpgrade = 0;
+                            neighbourhoodBestPermutationValue = newPermutationValue;
+                            neighbourhoodBestPermutation = newPermutation;
                         }
                     }
-
+                    else if (newPermutationValue < bestPermutationValue) { //kryterium aspiracji
+                        bestSolution = solution;
+                        neighbourhoodBestPermutationValue = newPermutationValue;
+                        neighbourhoodBestPermutation = newPermutation;
+                    }
                 }
             }
             if (bestSolution != null) {
@@ -44,13 +51,17 @@ public class TabuSearch {
                 }
                 tabuList.offer(bestSolution);
             }
+            if (neighbourhoodBestPermutationValue < bestPermutationValue) {
+                bestPermutationValue = neighbourhoodBestPermutationValue;
+                bestPermutation = neighbourhoodBestPermutation;
+                withoutUpgrade = 0;
+            }
             else {
                 withoutUpgrade++;
             }
-            currentPermutation = bestPermutation;
+            currentPermutation = neighbourhoodBestPermutation;
         }
-
-        return currentPermutation;
+        return bestPermutation;
     }
 
     private static int[] invert(int[] currentPermutation, int i, int j) {
