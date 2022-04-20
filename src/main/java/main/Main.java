@@ -25,8 +25,8 @@ public class Main {
         System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
         System.out.println("Accelerated2OPT: " + Utils.routeLength(TwoOpt.acceleratedTwoOpt(data, startPermutation), data));
         System.out.println("NeighborExtended->2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, NeighborExtended.neighborExtended(data)), data));
-        System.out.println("KRandom->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, KRandom.kRandom(data,10000)), data) );
-        System.out.println("NeighbourExtended->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, NeighborExtended.neighborExtended(data)), data) );
+        System.out.println("KRandom->TabuSearch: " + Utils.routeLength(TabooSearch.tabooSearch(data, KRandom.kRandom(data,10000)), data) );
+        System.out.println("NeighbourExtended->TabuSearch: " + Utils.routeLength(TabooSearch.tabooSearch(data, NeighborExtended.neighborExtended(data)), data) );
     }
 }
 

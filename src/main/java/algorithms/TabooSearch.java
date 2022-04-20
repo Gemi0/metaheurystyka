@@ -5,24 +5,39 @@ import main.TSPData;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
+public class TabooSearch {
 
-public class TabuSearch {
+    static final int tabooListSize = 7;
+    static int withoutUpgrade = 0;
+    static int iteration = 0;
+    static long start;
+    static long end;
 
-    static final int tabuListSize = 7;
+    private static boolean iterationsWithoutImproveStop(int maxIterations) {
+        return withoutUpgrade < maxIterations;
+    }
 
-    public static int[] tabuSearch(TSPData data, int[] startPermutation) {
+    private static boolean iterationsStop(int maxIterations) {
+        return iteration < maxIterations;
+    }
+
+    private static boolean timeStop(long maxTime) {
+        return end - start < maxTime;
+    }
+
+    public static int[] tabooSearch(TSPData data, int[] startPermutation) {
         int[] currentPermutation = Arrays.copyOf(startPermutation, startPermutation.length);
         double bestPermutationValue = Utils.routeLength(currentPermutation, data);
 
         int[] bestPermutation = currentPermutation;
         int[] neighbourhoodBestPermutation = currentPermutation;
 
-        TabuList<Solution> tabuList = new TabuList<>(tabuListSize);
+        TabooList<Solution> tabuList = new TabooList<>(tabooListSize);
 
-        int withoutUpgrade = 0;
         double neighbourhoodBestPermutationValue;
 
-        while (withoutUpgrade < 10000) {
+        start = System.currentTimeMillis();
+        while (iterationsWithoutImproveStop(10000)) {
             Solution bestSolution = null;
             neighbourhoodBestPermutationValue = Double.MAX_VALUE;
             for (int i = 0; i < data.distance.length; i++) {
@@ -46,7 +61,7 @@ public class TabuSearch {
                 }
             }
             if (bestSolution != null) {
-                if (tabuList.size() == tabuListSize) {
+                if (tabuList.size() == tabooListSize) {
                     tabuList.poll();
                 }
                 tabuList.offer(bestSolution);
@@ -59,6 +74,8 @@ public class TabuSearch {
             else {
                 withoutUpgrade++;
             }
+            iteration++;
+            end = System.currentTimeMillis();
             currentPermutation = neighbourhoodBestPermutation;
         }
         return bestPermutation;
@@ -75,9 +92,9 @@ public class TabuSearch {
         return temp;
     }
 
-    private static class TabuList<T> extends ArrayBlockingQueue<T> {
+    private static class TabooList<T> extends ArrayBlockingQueue<T> {
 
-        public TabuList(int capacity) {
+        public TabooList(int capacity) {
             super(capacity);
             this.elements = new LinkedList<>();
         }
