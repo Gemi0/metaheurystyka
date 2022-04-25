@@ -8,8 +8,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class TabuSearch {
 
     static final int tabuListSize = 7;
-    static int withoutUpgrade = 0;
-    static int iteration = 0;
+    static int withoutUpgrade;
+    static int iteration;
     static long start;
     static long end;
 
@@ -35,9 +35,11 @@ public class TabuSearch {
         TabuList<Solution> tabuList = new TabuList<>(tabuListSize);
 
         double neighbourhoodBestPermutationValue;
+        withoutUpgrade = 0;
+        iteration = 0;
 
         start = System.currentTimeMillis();
-        while (iterationsWithoutUpgradeStop(1000)) {
+        while (withoutUpgrade < 10000) {
             Solution bestSolution = null;
             neighbourhoodBestPermutationValue = Double.MAX_VALUE;
             for (int i = 0; i < data.distance.length; i++) {
