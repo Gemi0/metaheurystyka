@@ -13,7 +13,7 @@ public class TabuSearch {
     static long start;
     static long end;
 
-    private static boolean iterationsWithoutImproveStop(int maxIterations) {
+    private static boolean iterationsWithoutUpgradeStop(int maxIterations) {
         return withoutUpgrade < maxIterations;
     }
 
@@ -37,7 +37,7 @@ public class TabuSearch {
         double neighbourhoodBestPermutationValue;
 
         start = System.currentTimeMillis();
-        while (iterationsWithoutImproveStop(10000)) {
+        while (iterationsWithoutUpgradeStop(1000)) {
             Solution bestSolution = null;
             neighbourhoodBestPermutationValue = Double.MAX_VALUE;
             for (int i = 0; i < data.distance.length; i++) {
