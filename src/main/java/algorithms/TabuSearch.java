@@ -5,9 +5,9 @@ import main.TSPData;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class TabooSearch {
+public class TabuSearch {
 
-    static final int tabooListSize = 7;
+    static final int tabuListSize = 7;
     static int withoutUpgrade = 0;
     static int iteration = 0;
     static long start;
@@ -25,14 +25,14 @@ public class TabooSearch {
         return end - start < maxTime;
     }
 
-    public static int[] tabooSearch(TSPData data, int[] startPermutation) {
+    public static int[] tabuSearch(TSPData data, int[] startPermutation) {
         int[] currentPermutation = Arrays.copyOf(startPermutation, startPermutation.length);
         double bestPermutationValue = Utils.routeLength(currentPermutation, data);
 
         int[] bestPermutation = currentPermutation;
         int[] neighbourhoodBestPermutation = currentPermutation;
 
-        TabooList<Solution> tabuList = new TabooList<>(tabooListSize);
+        TabuList<Solution> tabuList = new TabuList<>(tabuListSize);
 
         double neighbourhoodBestPermutationValue;
 
@@ -53,7 +53,7 @@ public class TabooSearch {
                             neighbourhoodBestPermutation = newPermutation;
                         }
                     }
-                    else if (newPermutationValue < bestPermutationValue) { //kryterium aspiracji
+                    else if (newPermutationValue < bestPermutationValue) { //aspiration
                         bestSolution = solution;
                         neighbourhoodBestPermutationValue = newPermutationValue;
                         neighbourhoodBestPermutation = newPermutation;
@@ -61,7 +61,7 @@ public class TabooSearch {
                 }
             }
             if (bestSolution != null) {
-                if (tabuList.size() == tabooListSize) {
+                if (tabuList.size() == tabuListSize) {
                     tabuList.poll();
                 }
                 tabuList.offer(bestSolution);
@@ -92,9 +92,9 @@ public class TabooSearch {
         return temp;
     }
 
-    private static class TabooList<T> extends ArrayBlockingQueue<T> {
+    private static class TabuList<T> extends ArrayBlockingQueue<T> {
 
-        public TabooList(int capacity) {
+        public TabuList(int capacity) {
             super(capacity);
             this.elements = new LinkedList<>();
         }
