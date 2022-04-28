@@ -1,4 +1,4 @@
-package algorithms.arrayTabu.neighborhoodBrowser.accelerated;
+package algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated;
 
 import algorithms.arrayTabu.neighborhoodBrowser.Util;
 

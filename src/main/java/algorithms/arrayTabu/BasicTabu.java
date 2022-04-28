@@ -1,13 +1,13 @@
 package algorithms.arrayTabu;
 
 import algorithms.Utils;
-import algorithms.arrayTabu.neighborhoodBrowser.accelerated.AcceleratedInsertBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.accelerated.AcceleratedInvertBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.accelerated.AcceleratedSwapBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.basic.InsertBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.basic.InvertBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInsertBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInvertBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedSwapBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InsertBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.NeighborhoodBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.basic.SwapBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.SwapBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedInvertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
 import main.TSPData;

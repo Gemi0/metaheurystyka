@@ -1,7 +1,6 @@
-package algorithms.arrayTabu.neighborhoodBrowser.accelerated;
+package algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated;
 
-import algorithms.Utils;
-import algorithms.arrayTabu.neighborhoodBrowser.basic.AbstractBasicBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.AbstractBasicBrowser;
 
 public abstract class AbstractAcceleratedBrowser extends AbstractBasicBrowser {
     @Override

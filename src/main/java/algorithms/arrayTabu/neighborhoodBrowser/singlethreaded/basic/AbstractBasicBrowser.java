@@ -1,4 +1,4 @@
-package algorithms.arrayTabu.neighborhoodBrowser.basic;
+package algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic;
 
 import algorithms.Utils;
 import algorithms.arrayTabu.neighborhoodBrowser.NeighborhoodBrowser;
