@@ -1,35 +1,15 @@
 package algorithms.arrayTabu.neighborhoodBrowser.accelerated;
 
+import main.TSPData;
+
 public class AcceleratedInsertBrowser extends AbstractAcceleratedBrowser{
+
     @Override
-    public void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue) {
-        bestNeighborPermutationValue = Double.MAX_VALUE;
-        bestNeighborPermutationI = -1;
-        bestNeighborPermutationJ = -1;
-
-        double newPermutationValue = Double.MAX_VALUE;
-
-        for (int i = 0; i < currentPermutation.length; i++) {
-            for (int j = 0; j < currentPermutation.length; j++) {
-                if(i == j)
-                    continue;
-
-                newPermutationValue = updateValue(currentPermutationValue, i, j);
-
-                if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue; //TODO: ASPIRATION
-                }
-
-                if (newPermutationValue < bestNeighborPermutationValue) {
-                    neighborhoodGeneratingFunction(currentPermutationValue, i, j);
-                    System.arraycopy(newPermutation, 0, bestNeighborPermutation, 0, newPermutation.length);
-                    bestNeighborPermutationValue = newPermutationValue;
-                    bestNeighborPermutationI = i;
-                    bestNeighborPermutationJ = j;
-                }
-            }
-        }
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
+        super.prepareMemory(currentPermutation, tabuList, tabuListLength, data);
+        this.symmetric = true;
     }
+
     @Override
     public double updateValue(double currentPermutationValue, int i, int j) {
         if (data.distance.length < 2)

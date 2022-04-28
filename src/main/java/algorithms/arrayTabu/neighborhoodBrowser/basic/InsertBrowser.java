@@ -1,37 +1,13 @@
 package algorithms.arrayTabu.neighborhoodBrowser.basic;
 
-import algorithms.Utils;
+import main.TSPData;
 
 public class InsertBrowser extends AbstractBasicBrowser{
 
     @Override
-    public void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue) {
-        bestNeighborPermutationValue = Double.MAX_VALUE;
-        bestNeighborPermutationI = -1;
-        bestNeighborPermutationJ = -1;
-
-        double newPermutationValue = Double.MAX_VALUE;
-
-        for (int i = 0; i < currentPermutation.length; i++) {
-            for (int j = 0; j < currentPermutation.length; j++) {
-                if(i == j)
-                    continue;
-
-                neighborhoodGeneratingFunction(currentPermutationValue, i, j);
-                newPermutationValue = Utils.routeLength(newPermutation, data);
-
-                if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue;//TODO: ASPIRATION
-                }
-
-                if (newPermutationValue < bestNeighborPermutationValue) {
-                    System.arraycopy(newPermutation, 0, bestNeighborPermutation, 0, newPermutation.length);
-                    bestNeighborPermutationValue = newPermutationValue;
-                    bestNeighborPermutationI = i;
-                    bestNeighborPermutationJ = j;
-                }
-            }
-        }
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
+        super.prepareMemory(currentPermutation, tabuList, tabuListLength, data);
+        this.symmetric = true;
     }
 
     //insert i-th element on j-th position
