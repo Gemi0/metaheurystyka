@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodBrowser {
+    protected boolean symmetric;
     protected int[] currentPermutation;
     protected long[][] tabuList;
     protected int tabuListLength;
@@ -39,7 +40,7 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
         this.data = data;
 
         int threadsNumber = Runtime.getRuntime().availableProcessors();
-        int increment = Math.max(currentPermutation.length/threadsNumber/THREAD_FACTOR, 1);
+        int increment = Math.max(currentPermutation.length / threadsNumber / THREAD_FACTOR, 1);
         portions = (int) Math.ceil(((double) currentPermutation.length) / ((double) increment));
 
         this.bestNeighborPermutation = new int[portions][currentPermutation.length];
@@ -52,10 +53,10 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
         executor = Executors.newFixedThreadPool(threadsNumber);
         int i = 0;
         int index = 0;
-        while(i < currentPermutation.length) {
+        while (i < currentPermutation.length) {
             int start = i;
             final int finalIndex = index;
-            int end = Math.min(start+increment, currentPermutation.length);
+            int end = Math.min(start + increment, currentPermutation.length);
             runnableTasks[index] = () -> {
                 browse(this.tabuIteration, this.currentPermutationValue, this.bestPermutationValue, start, end, finalIndex);
                 latch.countDown();
@@ -63,6 +64,7 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
             index++;
             i = end;
         }
+        this.symmetric = true;
     }
 
     public void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue) {
@@ -72,7 +74,7 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
 
         this.latch = new CountDownLatch(portions);
 
-        for(Runnable r : runnableTasks)
+        for (Runnable r : runnableTasks)
             executor.submit(r);
 
         try {
@@ -83,15 +85,14 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
         }
 
         double bestVal = Double.MAX_VALUE;
-        for(int i = 0 ; i < portions; i++) {
-            if(bestVal > bestNeighborPermutationValue[i]){
+        for (int i = 0; i < portions; i++) {
+            if (bestVal > bestNeighborPermutationValue[i]) {
                 bestVal = bestNeighborPermutationValue[i];
                 bestIndex = i;
             }
         }
 
     }
-
 
 
     protected void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue, int start, int end, int index) {
@@ -102,7 +103,14 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
         double newPermutationValue = Double.MAX_VALUE;
 
         for (int i = start; i < end; i++) {
-            for (int j = i + 1; j < currentPermutation.length; j++) {
+            int j = i + 1;
+            if (!symmetric) {
+                j = 0;
+            }
+            for (; j < currentPermutation.length; j++) {
+                if (i == j) {
+                    continue;
+                }
                 neighborhoodGeneratingFunction(currentPermutationValue, i, j, index);
                 newPermutationValue = Utils.routeLength(newPermutation[index], data);
 

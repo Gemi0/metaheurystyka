@@ -11,6 +11,7 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
         //DO NOTHING
     }
 
+    protected boolean symmetric;
     protected int[] currentPermutation;
     protected int[] bestNeighborPermutation;
     protected int[] newPermutation;
@@ -29,6 +30,7 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
         this.tabuList = tabuList;
         this.tabuListLength = tabuListLength;
         this.data = data;
+        this.symmetric = true;
     }
 
     public void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue) {
@@ -39,7 +41,14 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
         double newPermutationValue = Double.MAX_VALUE;
 
         for (int i = 0; i < currentPermutation.length; i++) {
-            for (int j = i + 1; j < currentPermutation.length; j++) {
+            int j = i + 1;
+            if(!symmetric){
+                j = 0;
+            }
+            for (; j < currentPermutation.length; j++) {
+                if(i == j) {
+                    continue;
+                }
                 neighborhoodGeneratingFunction(currentPermutationValue, i, j);
                 newPermutationValue = Utils.routeLength(newPermutation, data);
 

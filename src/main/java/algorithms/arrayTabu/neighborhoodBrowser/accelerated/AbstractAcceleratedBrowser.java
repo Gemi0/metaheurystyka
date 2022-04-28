@@ -13,7 +13,14 @@ public abstract class AbstractAcceleratedBrowser extends AbstractBasicBrowser {
         double newPermutationValue = Double.MAX_VALUE;
 
         for (int i = 0; i < currentPermutation.length; i++) {
-            for (int j = i + 1; j < currentPermutation.length; j++) {
+            int j = i + 1;
+            if(!symmetric){
+                j = 0;
+            }
+            for (; j < currentPermutation.length; j++) {
+                if(i == j) {
+                    continue;
+                }
                 newPermutationValue = updateValue(currentPermutationValue, i, j);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
