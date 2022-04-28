@@ -1,6 +1,8 @@
 package main;
 
 import algorithms.*;
+import algorithms.arrayTabu.BasicTabu;
+import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
 
 public class Main {
 
@@ -15,7 +17,7 @@ public class Main {
             startPermutation[i] = i;
         }
 
-        System.out.println("Sample run");
+        /*System.out.println("Sample run");
         System.out.println("Distance: " + distanceFilePath);
         System.out.println("Coords: " + coordsFilePath);
         System.out.println();
@@ -25,8 +27,21 @@ public class Main {
         System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
         System.out.println("Accelerated2OPT: " + Utils.routeLength(TwoOpt.acceleratedTwoOpt(data, startPermutation), data));
         System.out.println("NeighborExtended->2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, NeighborExtended.neighborExtended(data)), data));
-        System.out.println("KRandom->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, KRandom.kRandom(data,10000)), data) );
-        System.out.println("NeighbourExtended->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, NeighborExtended.neighborExtended(data)), data) );
+        System.out.println("KRandom->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, KRandom.kRandom(data, 10000)), data));
+        System.out.println("NeighbourExtended->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, NeighborExtended.neighborExtended(data)), data));
+
+        //ArrayTabu
+        System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 2000000000L), data));
+        System.out.println("ArrayTabuSwap: " + Utils.routeLength(BasicTabu.tabuSearchSwap(startPermutation, data, 100, 2000000000L), data));
+        System.out.println("ArrayTabuInsert: " + Utils.routeLength(BasicTabu.tabuSearchInsert(startPermutation, data, 100, 2000000000L), data));
+*/
+        //ArrayTabuAccelerated
+        //System.out.println("ArrayTabuInvertAcc: " + Utils.routeLength(BasicTabu.tabuSearchInvertAcc(startPermutation, data, 100, 2000000000L), data));
+        //System.out.println("ArrayTabuSwapAcc: " + Utils.routeLength(BasicTabu.tabuSearchSwapAcc(startPermutation, data, 100, 1200000000L), data));
+        //System.out.println("ArrayTabuInsertAcc: " + Utils.routeLength(BasicTabu.tabuSearchInsertAcc(startPermutation, data, 100, 2000000000L), data));
+
+        System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 200000000L), data));
+        System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearch(new InvertMultithreadedBrowser(), startPermutation, data, 100, 200000000L), data));
     }
 }
 

@@ -1,4 +1,4 @@
-package benchmark.tests.random;
+package benchmark.tests.list1.random;
 
 import algorithms.Utils;
 import benchmark.Benchmark;

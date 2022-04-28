@@ -1,4 +1,4 @@
-package benchmark.tests.random;
+package benchmark.tests.list1.random;
 
 import benchmark.Benchmark;
 import benchmark.RandomRepeatingBenchmark;
@@ -7,12 +7,12 @@ import main.TSPData;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TwoOptExtendedSymetric extends RandomRepeatingBenchmark {
+public class TwoOptExtendedAsymetric extends RandomRepeatingBenchmark {
 
-    public TwoOptExtendedSymetric() {
+    public TwoOptExtendedAsymetric() {
         minDistance = 1;
         maxDistance = 10000;
-        symetric = true;
+        symetric = false;
         minN = 10;
         maxN = 250;
         step = 10;
@@ -32,8 +32,8 @@ public class TwoOptExtendedSymetric extends RandomRepeatingBenchmark {
     }
 
     public static void main(String[] args) {
-        TwoOptExtendedSymetric benchmark = new TwoOptExtendedSymetric();
+        TwoOptExtendedAsymetric benchmark = new TwoOptExtendedAsymetric();
         benchmark.runBenchmark();
-        benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\RandomTests\\TwoOptvsExtendedNeighborvsBoth\\Symetric");
+        benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\RandomTests\\TwoOptvsExtendedNeighborvsBoth\\Asymetric");
     }
 }

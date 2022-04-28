@@ -1,6 +1,7 @@
-package benchmark.tests.tsp;
+package benchmark.tests.list1.tsp;
 
 import benchmark.Benchmark;
+
 import benchmark.TSPBenchmark;
 import main.TSPData;
 import main.XMLParser;
@@ -9,13 +10,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AsymetricTSPBenchmark extends TSPBenchmark {
+public class SymetricTSPBenchmark extends TSPBenchmark {
 
     protected TSPData problem;
 
-    public AsymetricTSPBenchmark(String problemName, File problemFile, double bestSolution) {
+    public SymetricTSPBenchmark(String problemName, File problemFile, double bestSolution) {
         repeats = 10;
-        names = new ArrayList<>(Arrays.asList("kRandom-10000", "neighbor", "neighborExtended", "twoOpt", "twoOptExtended"));
+        names = new ArrayList<>(Arrays.asList("kRandom-10000", "neighbor", "neighborExtended", "twoOpt", "acceleratedTwoOpt", "twoOptExtended"));
         problem = new TSPData(XMLParser.parseFile(problemFile));
         this.problemName = problemName;
         this.bestSolution = bestSolution;
@@ -29,19 +30,20 @@ public class AsymetricTSPBenchmark extends TSPBenchmark {
         results.add(Benchmark.runNeighbor(problem, 0));
         results.add(Benchmark.runNeighborExtended(problem));
         results.add(Benchmark.runTwoOpt(problem));
+        results.add(Benchmark.runAcceleratedTwoOpt(problem));
         results.add(Benchmark.runExtendedNeighborIntoTwoOpt(problem));
         return results;
     }
 
     public static void main(String[] args) {
-        ArrayList<String> problems = new ArrayList<>(Arrays.asList("ftv33", "ftv35", "ftv38", "ftv44", "ftv47", "ftv170"));
-        ArrayList<Double> bestSolutions = new ArrayList<>(Arrays.asList(1286.0, 1473.0, 1530.0, 1613.0, 1776.0, 2755.0));
+        ArrayList<String> problems = new ArrayList<>(Arrays.asList("a280", "att48", "berlin52", "brazil58", "brg180", "burma14"));
+        ArrayList<Double> bestSolutions = new ArrayList<>(Arrays.asList(2579.0, 10628.0, 7542.0, 25395.0, 1950.0, 3323.0));
         for(int i = 0; i < problems.size() ; i++) {
             String problemName = problems.get(i);
             double bestSolution = bestSolutions.get(i);
-            AsymetricTSPBenchmark benchmark = new AsymetricTSPBenchmark(problemName, new File(System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\asymetric\\" + problemName + ".xml"), bestSolution);
+            SymetricTSPBenchmark benchmark = new SymetricTSPBenchmark(problemName, new File(System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\" + problemName + ".xml"), bestSolution);
             benchmark.runBenchmark();
-            benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\TSPBenchmark\\Asymetric");
+            benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\TSPBenchmark\\Symetric");
         }
     }
 }
