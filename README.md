@@ -1,8 +1,8 @@
-# metaheurystyka
+# Metaheurystyka
 Exercises done for the "metaheuristic algorithms" course.
-# goal
+# Goal
 Main goal is to create and test diffrent algorithms for the TSP. 
-# done algorithms:
+# Done algorithms:
 - K-random
 - Nearest neighbor
 - Extended nearest neighbor
