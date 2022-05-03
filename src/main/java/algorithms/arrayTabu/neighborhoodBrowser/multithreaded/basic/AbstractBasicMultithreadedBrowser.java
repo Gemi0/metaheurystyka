@@ -14,6 +14,7 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
     protected long[][] tabuList;
     protected int tabuListLength;
     protected TSPData data;
+    protected boolean aspirationEnabled;
 
     protected int[][] bestNeighborPermutation;
     protected int[][] newPermutation;
@@ -33,11 +34,12 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
 
     public static final int THREAD_FACTOR = 2;
 
-    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data, boolean aspirationEnabled) {
         this.currentPermutation = currentPermutation;
         this.tabuList = tabuList;
         this.tabuListLength = tabuListLength;
         this.data = data;
+        this.aspirationEnabled = aspirationEnabled;
 
         int threadsNumber = Runtime.getRuntime().availableProcessors();
         int increment = Math.max(currentPermutation.length / threadsNumber / THREAD_FACTOR, 1);
@@ -115,7 +117,9 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
                 newPermutationValue = Utils.routeLength(newPermutation[index], data);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue;//TODO: ASPIRATION
+                    if(!aspirationEnabled || newPermutationValue >= bestPermutationValue){
+                        continue;
+                    }
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue[index]) {

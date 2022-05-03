@@ -6,8 +6,8 @@ import main.TSPData;
 public class AcceleratedInsertBrowser extends AbstractAcceleratedBrowser{
 
     @Override
-    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
-        super.prepareMemory(currentPermutation, tabuList, tabuListLength, data);
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data, boolean aspirationEnabled) {
+        super.prepareMemory(currentPermutation, tabuList, tabuListLength, data, aspirationEnabled);
         this.symmetric = false;
     }
 

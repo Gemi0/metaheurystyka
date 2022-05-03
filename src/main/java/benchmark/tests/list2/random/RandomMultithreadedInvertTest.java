@@ -24,12 +24,13 @@ public class RandomMultithreadedInvertTest extends RandomRepeatingBenchmark {
     @Override
     protected ArrayList<Benchmark.Result> singlePassWithData(TSPData problem) {
         System.gc();
-        ArrayList<Benchmark.Result> results = new ArrayList<>();
+        /*ArrayList<Benchmark.Result> results = new ArrayList<>();
         results.add(Benchmark.runBasicInvertTabuSearch(problem, 500, 3000000000L));
         results.add(Benchmark.runInvertMultithreadedTabuSearch(problem, 500, 3000000000L));
         results.add(Benchmark.runAcceleratedInvertMultithreadedTabuSearch(problem, 500, 3000000000L));
         results.add(Benchmark.runAccInvertTabuSearch(problem, 500, 3000000000L));
-        return results;
+        return results;*/
+        return null;
     }
 
     public static void main(String[] args) {

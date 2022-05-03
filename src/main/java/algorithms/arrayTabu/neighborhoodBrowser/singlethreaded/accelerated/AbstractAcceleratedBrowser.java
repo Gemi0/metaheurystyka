@@ -23,7 +23,9 @@ public abstract class AbstractAcceleratedBrowser extends AbstractBasicBrowser {
                 newPermutationValue = updateValue(currentPermutationValue, i, j);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue; //TODO: ASPIRATION
+                    if(!aspirationEnabled || newPermutationValue >= bestPermutationValue){
+                        continue;
+                    }
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue) {
