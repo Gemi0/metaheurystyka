@@ -14,9 +14,9 @@ public class RandomMultithreadedInvertTestExample extends RandomRepeatingBenchma
         maxDistance = 10000;
         symetric = true;
         minN = 10;
-        maxN = 200;
+        maxN = 100;
         step = 10;
-        repeats = 40;
+        repeats = 20;
         names = new ArrayList<>(Arrays.asList("yes-stagnation-no-aspiration", "no-stagnation-no-aspiration", "yes-stagnation-yes-aspiration", "no-stagnation-yes-aspiration"));
 
     }
@@ -25,10 +25,10 @@ public class RandomMultithreadedInvertTestExample extends RandomRepeatingBenchma
     protected ArrayList<Benchmark.Result> singlePassWithData(TSPData problem) {
         System.gc();
         ArrayList<Benchmark.Result> results = new ArrayList<>();
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 5000, false, 200));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 5000, false, Long.MAX_VALUE));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 5000, true, 200));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 5000, true, Long.MAX_VALUE));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, false, 200));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, false, Long.MAX_VALUE));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, true, 200));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, true, Long.MAX_VALUE));
         return results;
     }
 

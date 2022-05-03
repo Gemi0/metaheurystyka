@@ -35,9 +35,9 @@ public class Tabu {
         //Used for stagnation
         long stagnationIterationsWithoutImprovement = 0;
         long[][] stagnationList = new long[currentPermutation.length][currentPermutation.length];
-        long STAGNATION_TABU_LIST_SNAPSHOT_ITERATION = data.distance.length/5 + 1;
+        long STAGNATION_TABU_LIST_SNAPSHOT_ITERATION = tabuListLength;
 
-        //Prepare memory (multi-threading support)
+                //Prepare memory (multi-threading support)
         browser.prepareMemory(currentPermutation, tabuList, tabuListLength, data, aspirationEnabled);
 
         long startTime = System.nanoTime();
