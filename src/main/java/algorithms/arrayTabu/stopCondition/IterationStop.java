@@ -1,4 +1,4 @@
-package algorithms.arrayTabu.neighborhoodBrowser.stopCondition;
+package algorithms.arrayTabu.stopCondition;
 
 public class IterationStop implements StopCondition {
 

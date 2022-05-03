@@ -110,7 +110,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchSwap(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchSwap(startPermutation, data, tabuListSize, runTime, 100);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
@@ -124,7 +124,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchInvert(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchInvert(startPermutation, data, tabuListSize, runTime, 100);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
@@ -138,7 +138,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchInvertAcc(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchInvertAcc(startPermutation, data, tabuListSize, runTime, 100 );
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
@@ -152,7 +152,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchInvertMultithreaded(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchInvertMultithreaded(startPermutation, data, tabuListSize, runTime, 100);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
@@ -166,7 +166,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchAcceleratedInvertMultithreaded(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchAcceleratedInvertMultithreaded(startPermutation, data, tabuListSize, runTime, 100);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
@@ -180,7 +180,7 @@ public class Benchmark {
 
 
         long startTime = System.nanoTime();
-        int[] permutation = BasicTabu.tabuSearchSwapAcc(startPermutation, data, tabuListSize, runTime);
+        int[] permutation = BasicTabu.tabuSearchSwapAcc(startPermutation, data, tabuListSize, runTime, 100);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));

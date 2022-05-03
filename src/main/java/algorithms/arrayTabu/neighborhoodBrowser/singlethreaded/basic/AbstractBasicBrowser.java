@@ -53,7 +53,13 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
                 newPermutationValue = Utils.routeLength(newPermutation, data);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue;//TODO: ASPIRATION
+//                    if (newPermutationValue < bestPermutationValue) {
+//                        System.arraycopy(newPermutation, 0, bestNeighborPermutation, 0, newPermutation.length);
+//                        bestNeighborPermutationValue = newPermutationValue;
+//                        bestNeighborPermutationI = i;
+//                        bestNeighborPermutationJ = j;
+//                    } //TODO aspiration
+                    continue;
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue) {

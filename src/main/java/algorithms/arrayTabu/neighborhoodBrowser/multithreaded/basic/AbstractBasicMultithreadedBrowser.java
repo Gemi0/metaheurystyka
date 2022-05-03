@@ -115,7 +115,13 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
                 newPermutationValue = Utils.routeLength(newPermutation[index], data);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-                    continue;//TODO: ASPIRATION
+//                    if (newPermutationValue < bestPermutationValue) {
+//                        System.arraycopy(newPermutation[index], 0, bestNeighborPermutation[index], 0, newPermutation[index].length);
+//                        bestNeighborPermutationValue[index] = newPermutationValue;
+//                        bestNeighborPermutationI[index] = i;
+//                        bestNeighborPermutationJ[index] = j;
+//                    } //TODO aspiration
+                    continue;
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue[index]) {
