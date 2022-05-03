@@ -25,33 +25,34 @@ public class Tabu {
         browser.prepareMemory(currentPermutation, tabuList, tabuListLength, data, aspirationEnabled);
 
         long startTime = System.nanoTime();
-        while (true) {
+        do {
             //Generate the neighborhood and select the best candidate
             browser.browse(tabuIteration, currentPermutationValue, bestPermutationValue);
 
             //all entries in tabu
-            //Just continue, to empty tabu list
-            if(browser.getBestNeighborPermutationI() != -1) {
-                //Set the candidate to the current permutation, update the entry in the tabu list
-                System.arraycopy(browser.getBestNeighborPermutationReference(), 0, currentPermutation, 0, currentPermutation.length);
-                tabuList[browser.getBestNeighborPermutationI()][browser.getBestNeighborPermutationJ()] = tabuIteration;
-                currentPermutationValue = browser.getBestNeighborPermutationValue();
+            if (browser.getBestNeighborPermutationI() == -1) {
+                //Iterate tabu list
+                tabuIteration++;
+                //Just continue, to empty tabu list
+                continue;
+            }
 
-                //If the candidate is better than best so far, swap it
-                if (currentPermutationValue < bestPermutationValue) {
-                    System.arraycopy(currentPermutation, 0, bestPermutation, 0, currentPermutation.length);
-                    bestPermutationValue = currentPermutationValue;
-                }
+            //Set the candidate to the current permutation, update the entry in the tabu list
+            System.arraycopy(browser.getBestNeighborPermutationReference(), 0, currentPermutation, 0, currentPermutation.length);
+            tabuList[browser.getBestNeighborPermutationI()][browser.getBestNeighborPermutationJ()] = tabuIteration;
+            currentPermutationValue = browser.getBestNeighborPermutationValue();
+
+            //If the candidate is better than best so far, swap it
+            if (currentPermutationValue < bestPermutationValue) {
+                System.arraycopy(currentPermutation, 0, bestPermutation, 0, currentPermutation.length);
+                bestPermutationValue = currentPermutationValue;
             }
 
             //Iterate tabu list
             tabuIteration++;
 
-            //Stop condition
-            if (condition.shouldStop(tabuIteration, System.nanoTime() - startTime)) {
-                break;
-            }
-        }
+        } while (!condition.shouldStop(tabuIteration, System.nanoTime() - startTime));
+
         browser.cleanup();
         return bestPermutation;
     }
