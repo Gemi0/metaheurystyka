@@ -150,6 +150,10 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
 
     protected abstract void neighborhoodGeneratingFunction(double currentPermutationValue, int i, int j, int index);
 
+    public void setAspirationEnabled(boolean aspirationEnabled) {
+        this.aspirationEnabled = aspirationEnabled;
+    }
+
     @Override
     public void cleanup() {
         executor.shutdown();

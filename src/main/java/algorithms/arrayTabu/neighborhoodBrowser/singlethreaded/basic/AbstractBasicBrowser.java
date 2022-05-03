@@ -86,6 +86,11 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
         return bestNeighborPermutation;
     }
 
+    public void setAspirationEnabled(boolean aspirationEnabled) {
+        this.aspirationEnabled = aspirationEnabled;
+    }
+
+
     protected abstract void neighborhoodGeneratingFunction(double currentPermutationValue, int i, int j);
 
 }

@@ -2,6 +2,7 @@ package main;
 
 import algorithms.*;
 import algorithms.arrayTabu.Tabu;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInvertBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.stopConditions.IterationStopCondition;
 
@@ -43,8 +44,8 @@ public class Main {
 
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 200000000L), data));
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearch(new InvertMultithreadedBrowser(), startPermutation, data, 100, 200000000L), data));
-        System.out.println("ArrayTabuInvertBasic(aspiration enabled): " +  Utils.routeLength(Tabu.tabuSearch(new InvertBrowser(), new IterationStopCondition(500), startPermutation, data, 100, true), data));
-        System.out.println("ArrayTabuInvertBasic(aspiration disabled): " +  Utils.routeLength(Tabu.tabuSearch(new InvertBrowser(), new IterationStopCondition(500), startPermutation, data, 100, false), data));
+        System.out.println("ArrayTabuInvertBasic(stagnation enabled): " +  Utils.routeLength(Tabu.tabuSearch(new AcceleratedInvertBrowser(), new IterationStopCondition(2000), startPermutation, data, 25, false, 100), data));
+        System.out.println("ArrayTabuInvertBasic(stagnation disabled): " +  Utils.routeLength(Tabu.tabuSearch(new AcceleratedInvertBrowser(), new IterationStopCondition(2000), startPermutation, data, 25, false, Long.MAX_VALUE), data));
     }
 }
 

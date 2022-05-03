@@ -9,5 +9,6 @@ public interface NeighborhoodBrowser {
     int getBestNeighborPermutationJ();
     double getBestNeighborPermutationValue();
     int[] getBestNeighborPermutationReference();
+    void setAspirationEnabled(boolean aspirationEnabled);
     void cleanup();
 }

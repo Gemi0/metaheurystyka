@@ -25,6 +25,7 @@ public abstract class RepeatingBenchmark {
             }
 
             for (int repeat = 0; repeat < repeats; repeat++) {
+                System.out.println(repeat);//TEMPORARY
                 ArrayList<Benchmark.Result> results = singlePass(n);
 
                 double min = Double.MAX_VALUE;
