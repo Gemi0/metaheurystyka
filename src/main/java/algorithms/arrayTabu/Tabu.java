@@ -11,7 +11,12 @@ import java.util.Collections;
 
 public class Tabu {
 
+    public static ArrayList<SnapshotData> snapshots;
+
     public static int[] tabuSearch(NeighborhoodBrowser browser, StopCondition condition, int[] startPermutation, TSPData data, int tabuListLength, boolean aspirationEnabled, long stagnationMaxIterationsWithoutImprovement) {
+        //For analysis purposes
+        snapshots = new ArrayList<>();
+
         final int[] currentPermutation = Arrays.copyOf(startPermutation, startPermutation.length);
         double currentPermutationValue = Utils.routeLength(currentPermutation, data);
 
@@ -95,6 +100,8 @@ public class Tabu {
             if (currentPermutationValue < bestPermutationValue) {
                 System.arraycopy(currentPermutation, 0, bestPermutation, 0, currentPermutation.length);
                 bestPermutationValue = currentPermutationValue;
+                //For analysis purposes
+                snapshots.add(new SnapshotData(algorithmIteration, System.nanoTime() - startTime, bestPermutationValue));
             } else {
                 //Increase stagnation
                 stagnationIterationsWithoutImprovement++;
