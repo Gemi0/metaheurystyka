@@ -5,7 +5,6 @@ import algorithms.TwoOpt;
 import algorithms.arrayTabu.SnapshotData;
 import algorithms.arrayTabu.Tabu;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedInvertMultithreadedBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.stopConditions.IterationStopCondition;
 import main.Loader;
 import main.TSPData;
@@ -15,11 +14,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TestTemplate {
 
-    public static final String PATH = "C:\\Users\\Admin\\Desktop\\TSPDATASYMETRIC";
+    public static final String PATH = "C:\\Users\\Admin\\Desktop\\TSPDATASYMETRIC\\1";
 
     public static void main(String[] args) throws FileNotFoundException {
         int REPEATS = 20;
@@ -30,7 +28,7 @@ public class TestTemplate {
         ArrayList<String> problemNames = new ArrayList<>();
 
         for(File child : file.listFiles()) {
-            if(child.getName().endsWith(".xml")) {
+            if(child.getName().endsWith("a280.xml")) {
                 problems.add(Loader.loadWithoutCoords(child.getPath()));
                 problemNames.add(child.getName());
             }
@@ -52,6 +50,7 @@ public class TestTemplate {
             }
 
             ///TESTS GO HERE
+
             //BASE
             ArrayList<ArrayList<SnapshotData>> results = new ArrayList<>();
             for (int repeat = 0; repeat < REPEATS; repeat++) {
