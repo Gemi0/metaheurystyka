@@ -28,7 +28,7 @@ public class Test1Template {
         ArrayList<String> problemNames = new ArrayList<>();
 
         for(File child : file.listFiles()) {
-            if(child.getName().endsWith("a280.xml")) {
+            if(child.getName().endsWith(".xml")) {
                 problems.add(Loader.loadWithoutCoords(child.getPath()));
                 problemNames.add(child.getName());
             }
