@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class TestTemplate {
+public class Test1Template {
 
     public static final String PATH = "C:\\Users\\Admin\\Desktop\\TSPDATASYMETRIC\\1";
 
