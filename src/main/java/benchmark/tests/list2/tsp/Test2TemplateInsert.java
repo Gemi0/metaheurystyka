@@ -56,7 +56,6 @@ public class Test2TemplateInsert {
                 }
                 saveResults(results, problemNames.get(i) + ".out", 1);
             }
-
         }
     }
 
