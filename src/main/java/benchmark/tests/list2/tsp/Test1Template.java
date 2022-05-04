@@ -81,7 +81,10 @@ public class Test1Template {
     }
 
     private static void saveResults(ArrayList<ArrayList<SnapshotData>> results, String filename, int index) throws FileNotFoundException {
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(PATH + File.separator +filename), true))) {
+        File file = new File(PATH + File.separator +filename);
+        if(file.exists())
+            file.delete();
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(file, true))) {
             for (ArrayList<SnapshotData> single : results) {
                 double minValue = Double.MAX_VALUE;
                 for (SnapshotData data : single) {
