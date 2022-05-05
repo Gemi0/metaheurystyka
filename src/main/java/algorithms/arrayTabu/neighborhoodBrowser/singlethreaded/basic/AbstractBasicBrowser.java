@@ -18,12 +18,13 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
     protected long[][] tabuList;
     protected int tabuListLength;
     protected TSPData data;
+    protected boolean aspirationEnabled;
 
     protected double bestNeighborPermutationValue;
     protected int bestNeighborPermutationI;
     protected int bestNeighborPermutationJ;
 
-    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data, boolean aspirationEnabled) {
         this.currentPermutation = currentPermutation;
         this.bestNeighborPermutation = new int[currentPermutation.length];
         this.newPermutation = new int[currentPermutation.length];
@@ -31,6 +32,7 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
         this.tabuListLength = tabuListLength;
         this.data = data;
         this.symmetric = true;
+        this.aspirationEnabled = aspirationEnabled;
     }
 
     public void browse(long tabuIteration, double currentPermutationValue, double bestPermutationValue) {
@@ -53,13 +55,9 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
                 newPermutationValue = Utils.routeLength(newPermutation, data);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-//                    if (newPermutationValue < bestPermutationValue) {
-//                        System.arraycopy(newPermutation, 0, bestNeighborPermutation, 0, newPermutation.length);
-//                        bestNeighborPermutationValue = newPermutationValue;
-//                        bestNeighborPermutationI = i;
-//                        bestNeighborPermutationJ = j;
-//                    } //TODO aspiration
-                    continue;
+                    if(!aspirationEnabled || newPermutationValue >= bestPermutationValue){
+                        continue;
+                    }
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue) {
@@ -87,6 +85,11 @@ public abstract class AbstractBasicBrowser implements NeighborhoodBrowser {
     public int[] getBestNeighborPermutationReference() {
         return bestNeighborPermutation;
     }
+
+    public void setAspirationEnabled(boolean aspirationEnabled) {
+        this.aspirationEnabled = aspirationEnabled;
+    }
+
 
     protected abstract void neighborhoodGeneratingFunction(double currentPermutationValue, int i, int j);
 

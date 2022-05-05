@@ -14,6 +14,7 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
     protected long[][] tabuList;
     protected int tabuListLength;
     protected TSPData data;
+    protected boolean aspirationEnabled;
 
     protected int[][] bestNeighborPermutation;
     protected int[][] newPermutation;
@@ -33,11 +34,12 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
 
     public static final int THREAD_FACTOR = 2;
 
-    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data) {
+    public void prepareMemory(int[] currentPermutation, long[][] tabuList, int tabuListLength, TSPData data, boolean aspirationEnabled) {
         this.currentPermutation = currentPermutation;
         this.tabuList = tabuList;
         this.tabuListLength = tabuListLength;
         this.data = data;
+        this.aspirationEnabled = aspirationEnabled;
 
         int threadsNumber = Runtime.getRuntime().availableProcessors();
         int increment = Math.max(currentPermutation.length / threadsNumber / THREAD_FACTOR, 1);
@@ -115,13 +117,9 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
                 newPermutationValue = Utils.routeLength(newPermutation[index], data);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-//                    if (newPermutationValue < bestPermutationValue) {
-//                        System.arraycopy(newPermutation[index], 0, bestNeighborPermutation[index], 0, newPermutation[index].length);
-//                        bestNeighborPermutationValue[index] = newPermutationValue;
-//                        bestNeighborPermutationI[index] = i;
-//                        bestNeighborPermutationJ[index] = j;
-//                    } //TODO aspiration
-                    continue;
+                    if(!aspirationEnabled || newPermutationValue >= bestPermutationValue){
+                        continue;
+                    }
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue[index]) {
@@ -151,6 +149,10 @@ public abstract class AbstractBasicMultithreadedBrowser implements NeighborhoodB
     }
 
     protected abstract void neighborhoodGeneratingFunction(double currentPermutationValue, int i, int j, int index);
+
+    public void setAspirationEnabled(boolean aspirationEnabled) {
+        this.aspirationEnabled = aspirationEnabled;
+    }
 
     @Override
     public void cleanup() {

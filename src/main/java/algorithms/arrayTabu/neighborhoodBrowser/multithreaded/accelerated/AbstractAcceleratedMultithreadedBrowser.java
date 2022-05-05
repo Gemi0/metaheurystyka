@@ -24,14 +24,9 @@ public abstract class AbstractAcceleratedMultithreadedBrowser extends AbstractBa
                 newPermutationValue = updateValue(currentPermutationValue, i, j);
 
                 if (tabuIteration - tabuList[i][j] <= tabuListLength) {
-//                    if (newPermutationValue < bestPermutationValue) {
-//                        neighborhoodGeneratingFunction(currentPermutationValue, i, j, index);
-//                        System.arraycopy(newPermutation[index], 0, bestNeighborPermutation[index], 0, newPermutation[index].length);
-//                        bestNeighborPermutationValue[index] = newPermutationValue;
-//                        bestNeighborPermutationI[index] = i;
-//                        bestNeighborPermutationJ[index] = j;
-//                    } //TODO aspiration
-                    continue;
+                    if(!aspirationEnabled || newPermutationValue >= bestPermutationValue){
+                        continue;
+                    }
                 }
 
                 if (newPermutationValue < bestNeighborPermutationValue[index]) {
