@@ -16,7 +16,7 @@ public class Test6Template extends RandomRepeatingBenchmark {
         minN = 10;
         maxN = 200;
         step = 10;
-        repeats = 3;
+        repeats = 10;
         names = new ArrayList<>(Arrays.asList("yes-stagnation-no-aspiration", "no-stagnation-no-aspiration", "yes-stagnation-yes-aspiration", "no-stagnation-yes-aspiration"));
 
     }
