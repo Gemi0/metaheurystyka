@@ -7,16 +7,16 @@ import main.TSPData;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RandomMultithreadedInvertTestExample extends RandomRepeatingBenchmark {
+public class Test6Template extends RandomRepeatingBenchmark {
 
-    public RandomMultithreadedInvertTestExample() {
+    public Test6Template() {
         minDistance = 1;
         maxDistance = 10000;
         symetric = true;
         minN = 10;
-        maxN = 100;
+        maxN = 200;
         step = 10;
-        repeats = 20;
+        repeats = 3;
         names = new ArrayList<>(Arrays.asList("yes-stagnation-no-aspiration", "no-stagnation-no-aspiration", "yes-stagnation-yes-aspiration", "no-stagnation-yes-aspiration"));
 
     }
@@ -25,15 +25,15 @@ public class RandomMultithreadedInvertTestExample extends RandomRepeatingBenchma
     protected ArrayList<Benchmark.Result> singlePassWithData(TSPData problem) {
         System.gc();
         ArrayList<Benchmark.Result> results = new ArrayList<>();
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, false, 200));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, false, Long.MAX_VALUE));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, true, 200));
-        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 20, 5000, true, Long.MAX_VALUE));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 10000, false, 100));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 10000, false, Long.MAX_VALUE));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 10000, true, 100));
+        results.add(Benchmark.runMultithreadedAcceleratedInvertTabuSearchIterationStop(problem, 7, 10000, true, Long.MAX_VALUE));
         return results;
     }
 
     public static void main(String[] args) {
-        RandomMultithreadedInvertTestExample benchmark = new RandomMultithreadedInvertTestExample();
+        Test6Template benchmark = new Test6Template();
         benchmark.runBenchmark();
         benchmark.saveResults("C:\\Users\\Admin\\Documents\\bench\\");
     }
