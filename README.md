@@ -10,5 +10,9 @@ This repository contains multiple metaheuristic algorithms and tests for the TSP
 Charts for the Tabu Search algorithm can be found in Charts - 2.zip.
 # Reports
 Reports done for the course:
-- Sprawozdanie Metaheurystyki 1.pdf
+- [Report 1](https://github.com/Gemi0/metaheurystyka/blob/master/Sprawozdanie%20Metaheurystyki%201.pdf)
 - Sprawozdanie Metaheurystyki 2.docx
+# Developed by
+[Dominik Gorgosch](https://github.com/Gemi0)
+
+[Michał Zwatrzko](https://github.com/MizozPL)
