@@ -2,13 +2,11 @@ package benchmark;
 
 import algorithms.*;
 import algorithms.arrayTabu.Tabu;
-import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedInsertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedInvertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedSwapMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InsertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.SwapMultithreadedBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInsertBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInvertBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedSwapBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InsertBrowser;
@@ -215,30 +213,6 @@ public class Benchmark {
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
     }
-    public static Result runAcceleratedInsertTabuSearchIterationStop(TSPData data, int tabuListSize, long iterationCount, boolean aspiration, long stagnationMaxIterationsWithoutImprovement) {
-        int[] startPermutation = new int[data.distance.length];
-        for (int i = 0; i < data.distance.length; i++) {
-            startPermutation[i] = i;
-        }
-
-        long startTime = System.nanoTime();
-        int[] permutation = Tabu.tabuSearch(new AcceleratedInsertBrowser(), new IterationStopCondition(iterationCount), startPermutation, data, tabuListSize, aspiration, stagnationMaxIterationsWithoutImprovement);
-        long endTime = System.nanoTime();
-
-        return new Result(endTime - startTime, Utils.routeLength(permutation, data));
-    }
-    public static Result runAcceleratedInsertTabuSearchTimeStop(TSPData data, int tabuListSize, long runtime, boolean aspiration, long stagnationMaxIterationsWithoutImprovement) {
-        int[] startPermutation = new int[data.distance.length];
-        for (int i = 0; i < data.distance.length; i++) {
-            startPermutation[i] = i;
-        }
-
-        long startTime = System.nanoTime();
-        int[] permutation = Tabu.tabuSearch(new AcceleratedInsertBrowser(), new TimeStopCondition(runtime), startPermutation, data, tabuListSize, aspiration, stagnationMaxIterationsWithoutImprovement);
-        long endTime = System.nanoTime();
-
-        return new Result(endTime - startTime, Utils.routeLength(permutation, data));
-    }
     public static Result runAcceleratedInvertTabuSearchIterationStop(TSPData data, int tabuListSize, long iterationCount, boolean aspiration, long stagnationMaxIterationsWithoutImprovement) {
         int[] startPermutation = new int[data.distance.length];
         for (int i = 0; i < data.distance.length; i++) {
@@ -359,30 +333,6 @@ public class Benchmark {
 
         long startTime = System.nanoTime();
         int[] permutation = Tabu.tabuSearch(new AcceleratedSwapMultithreadedBrowser(), new TimeStopCondition(runtime), startPermutation, data, tabuListSize, aspiration, stagnationMaxIterationsWithoutImprovement);
-        long endTime = System.nanoTime();
-
-        return new Result(endTime - startTime, Utils.routeLength(permutation, data));
-    }
-    public static Result runMultithreadedAcceleratedInsertTabuSearchIterationStop(TSPData data, int tabuListSize, long iterationCount, boolean aspiration, long stagnationMaxIterationsWithoutImprovement) {
-        int[] startPermutation = new int[data.distance.length];
-        for (int i = 0; i < data.distance.length; i++) {
-            startPermutation[i] = i;
-        }
-
-        long startTime = System.nanoTime();
-        int[] permutation = Tabu.tabuSearch(new AcceleratedInsertMultithreadedBrowser(), new IterationStopCondition(iterationCount), startPermutation, data, tabuListSize, aspiration, stagnationMaxIterationsWithoutImprovement);
-        long endTime = System.nanoTime();
-
-        return new Result(endTime - startTime, Utils.routeLength(permutation, data));
-    }
-    public static Result runMultithreadedAcceleratedInsertTabuSearchTimeStop(TSPData data, int tabuListSize, long runtime, boolean aspiration, long stagnationMaxIterationsWithoutImprovement) {
-        int[] startPermutation = new int[data.distance.length];
-        for (int i = 0; i < data.distance.length; i++) {
-            startPermutation[i] = i;
-        }
-
-        long startTime = System.nanoTime();
-        int[] permutation = Tabu.tabuSearch(new AcceleratedInsertMultithreadedBrowser(), new TimeStopCondition(runtime), startPermutation, data, tabuListSize, aspiration, stagnationMaxIterationsWithoutImprovement);
         long endTime = System.nanoTime();
 
         return new Result(endTime - startTime, Utils.routeLength(permutation, data));
