@@ -1,10 +1,8 @@
 package main;
 
-import algorithms.*;
-import algorithms.arrayTabu.Tabu;
-import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInvertBrowser;
-import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
-import algorithms.arrayTabu.stopConditions.IterationStopCondition;
+import algorithms.ABC.ArtificialBeeColony;
+import algorithms.Utils;
+import algorithms.arrayTabu.stopConditions.TimeStopCondition;
 
 public class Main {
 
@@ -44,11 +42,7 @@ public class Main {
 
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 200000000L), data));
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearch(new InvertMultithreadedBrowser(), startPermutation, data, 100, 200000000L), data));
-        for(int i = 1; i <= 100; i++) {
-            System.out.println("\n" + i);
-            System.out.println("ArrayTabuInvertBasic(stagnation enabled): " + Utils.routeLength(Tabu.tabuSearch(new AcceleratedInvertBrowser(), new IterationStopCondition(5000), startPermutation, data, i, false, 100), data));
-            System.out.println("ArrayTabuInvertBasic(stagnation disabled): " + Utils.routeLength(Tabu.tabuSearch(new AcceleratedInvertBrowser(), new IterationStopCondition(5000), startPermutation, data, i, false, Long.MAX_VALUE), data));
-        }
+        System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(1000000000), data, 1000000, 100), data));
     }
 }
 
