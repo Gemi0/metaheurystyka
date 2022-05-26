@@ -43,11 +43,10 @@ public class Scouts extends Bee {
                 int[] currentPermutation = flowers.get(i).getPermutation();
                 int[] newPermutation = flowers.get(i).getPermutation().clone();
                 Util.invert(currentPermutation, newPermutation,rnd.nextInt(currentPermutation.length), rnd.nextInt(currentPermutation.length));
-                Flower newFlower = new Flower(newPermutation, data);
-                flowers.set(i, newFlower);
+                flowers.get(i).setPermutation(newPermutation);
 
-                if (newFlower.getPermutationValue() < bestFlower.getPermutationValue()) {
-                    super.bestFlower = newFlower;
+                if (flowers.get(i).getPermutationValue() < bestFlower.getPermutationValue()) {
+                    Bee.bestFlower = flowers.get(i);
                 }
             }
         }

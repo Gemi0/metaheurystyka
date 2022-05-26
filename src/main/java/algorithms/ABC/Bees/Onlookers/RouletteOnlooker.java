@@ -44,7 +44,7 @@ public class RouletteOnlooker extends Bee {
             result.add(probabilitiesMap.get(key));
         }
         result = employee.sendBees(result, bestFlower, data);
-        super.bestFlower = employee.getBestFlower();
+        Bee.bestFlower = employee.getBestFlower();
         return result;
     }
 }

@@ -6,13 +6,20 @@ import main.TSPData;
 public class Flower {
 
     private int counter;
-    private final int[] permutation;
+    private int[] permutation;
     private double permutationValue;
+    private final TSPData data;
 
     public Flower(int[] permutation, TSPData data) {
+        this.data = data;
         this.counter = 0;
         this.permutation = permutation;
         this.permutationValue = Utils.routeLength(permutation, data);
+    }
+
+    public void setPermutation(int[] permutation) {
+        this.permutationValue = Utils.routeLength(permutation, data);
+        this.permutation = permutation;
     }
 
     public void increaseCounter() {

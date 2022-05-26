@@ -10,7 +10,7 @@ public abstract class Bee {
 
     protected Random rnd = new Random();
 
-    protected Flower bestFlower;
+    protected static Flower bestFlower;
 
     public Flower getBestFlower() {
         return bestFlower;

@@ -11,7 +11,7 @@ public class SimpleEmployee extends Bee {
 
     @Override
     public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, Flower bestFlower, TSPData data) {
-        super.bestFlower = bestFlower;
+        Bee.bestFlower = bestFlower;
         ArrayList<Flower> result = new ArrayList<>();
         for(Flower f : flowers) {
             int[] currentPermutation = f.getPermutation();
@@ -22,7 +22,7 @@ public class SimpleEmployee extends Bee {
             if (newFlower.getPermutationValue() < f.getPermutationValue()) {
                 result.add(newFlower);
                 if (newFlower.getPermutationValue() < bestFlower.getPermutationValue()) {
-                    super.bestFlower = newFlower;
+                    Bee.bestFlower = newFlower;
                 }
             }
             else {
