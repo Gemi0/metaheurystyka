@@ -1,14 +1,14 @@
 package algorithms.ABC.Bees.Employees;
 
 import algorithms.ABC.ArtificialBeeColony;
-import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Flower;
 import algorithms.arrayTabu.neighborhoodBrowser.Util;
 import main.TSPData;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class SimpleEmployee extends Bee {
+public class RandomEmployee extends Employees {
 
     @Override
     public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, TSPData data) {

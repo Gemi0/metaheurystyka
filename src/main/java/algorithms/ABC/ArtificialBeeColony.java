@@ -1,8 +1,11 @@
 package algorithms.ABC;
 
-import algorithms.ABC.Bees.Employees.SimpleEmployee;
+import algorithms.ABC.Bees.Employees.Employees;
+import algorithms.ABC.Bees.Employees.RandomEmployee;
 import algorithms.ABC.Bees.Onlookers.Onlookers;
 import algorithms.ABC.Bees.Onlookers.StochasticRoulette;
+import algorithms.ABC.Bees.Scouts.GeneticScout;
+import algorithms.ABC.Bees.Scouts.RandomScout;
 import algorithms.ABC.Bees.Scouts.Scouts;
 import algorithms.arrayTabu.stopConditions.StopCondition;
 import main.TSPData;
@@ -15,17 +18,16 @@ public class ArtificialBeeColony {
     public static Flower bestFlower = null;
 
     public static int[] beeColony(StopCondition condition, TSPData data, int flowersNumber, int maxCounter) {
-        SimpleEmployee simpleEmployee = new SimpleEmployee();
-        Scouts scouts = new Scouts(maxCounter);
+        Employees employees = new RandomEmployee();
+        Scouts scouts = new RandomScout(maxCounter);
         Onlookers onlookers = new StochasticRoulette();
 
         meadow = scouts.startingMeadow(data, flowersNumber);
 
-
         long algorithmIteration = 0;
         long startTime = System.nanoTime();
         do {
-            meadow = simpleEmployee.sendBees(meadow , data);
+            meadow = employees.sendBees(meadow , data);
 
             meadow  = onlookers.sendBees(meadow, data);
 

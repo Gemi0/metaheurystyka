@@ -1,7 +1,6 @@
 package algorithms.ABC.Bees.Onlookers;
 
-import algorithms.ABC.ArtificialBeeColony;
-import algorithms.ABC.Bees.Employees.SimpleEmployee;
+import algorithms.ABC.Bees.Employees.RandomEmployee;
 import algorithms.ABC.Flower;
 import main.TSPData;
 
@@ -28,7 +27,7 @@ public class RouletteOnlooker extends Onlookers {
     @Override
     public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, TSPData data) {
         calculateProbabilities(flowers);
-        SimpleEmployee employee = new SimpleEmployee();
+        RandomEmployee employee = new RandomEmployee();
         ArrayList<Flower> result = new ArrayList<>();
         for (int i = 0; i< flowers.size(); i++) {
             double r = rnd.nextDouble();

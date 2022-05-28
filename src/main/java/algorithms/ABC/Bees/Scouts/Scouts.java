@@ -1,21 +1,25 @@
 package algorithms.ABC.Bees.Scouts;
 
 import algorithms.ABC.ArtificialBeeColony;
-import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Flower;
 import algorithms.Utils;
 import algorithms.arrayTabu.neighborhoodBrowser.Util;
 import main.TSPData;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Scouts extends Bee {
+public abstract class Scouts {
 
-    private final int maxCounter;
+    protected final int maxCounter;
 
     public Scouts(int maxCounter) {
         this.maxCounter = maxCounter;
     }
+
+    protected Random rnd = new Random();
+
+    public abstract ArrayList<Flower> sendBees(ArrayList<Flower> flowers,TSPData data);
 
     public ArrayList<Flower> startingMeadow(TSPData data, int k) {
         ArrayList<Flower> meadow = new ArrayList<>();
@@ -37,21 +41,10 @@ public class Scouts extends Bee {
         return meadow;
     }
 
-    @Override
-    public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, TSPData data) {
-        for (int i = 0; i < flowers.size(); i++) {
-            if (flowers.get(i).getCounter() > maxCounter) {
-                int[] currentPermutation = flowers.get(i).getPermutation();
-                int[] newPermutation = flowers.get(i).getPermutation().clone();
-                Util.invert(currentPermutation, newPermutation,rnd.nextInt(currentPermutation.length), rnd.nextInt(currentPermutation.length));
-                flowers.get(i).setPermutation(newPermutation);
-                flowers.get(i).resetCounter();
-
-                if (flowers.get(i).getPermutationValue() < ArtificialBeeColony.bestFlower.getPermutationValue()) {
-                    ArtificialBeeColony.bestFlower = flowers.get(i);
-                }
-            }
-        }
-        return flowers;
+    protected void randomFlower(Flower flower) {
+        int[] currentPermutation = flower.getPermutation();
+        int[] newPermutation = flower.getPermutation().clone();
+        Util.invert(currentPermutation, newPermutation, rnd.nextInt(currentPermutation.length), rnd.nextInt(currentPermutation.length));
+        flower.setPermutation(newPermutation);
     }
 }

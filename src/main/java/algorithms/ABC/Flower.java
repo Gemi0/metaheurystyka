@@ -20,6 +20,7 @@ public class Flower {
     public void setPermutation(int[] permutation) {
         this.permutationValue = Utils.routeLength(permutation, data);
         this.permutation = permutation;
+        resetCounter();
     }
 
     public void resetCounter() {
