@@ -10,7 +10,5 @@ public abstract class Bee {
 
     protected Random rnd = new Random();
 
-    public static Flower bestFlower;
-
-    public abstract ArrayList<Flower> sendBees(ArrayList<Flower> flowers, Flower bestFlower, TSPData data);
+    public abstract ArrayList<Flower> sendBees(ArrayList<Flower> flowers,TSPData data);
 }

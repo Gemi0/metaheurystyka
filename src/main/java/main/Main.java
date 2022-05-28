@@ -43,7 +43,7 @@ public class Main {
 
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 200000000L), data));
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearch(new InvertMultithreadedBrowser(), startPermutation, data, 100, 200000000L), data));
-        System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(20000000000L), data, 1000, 500), data));
+        System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(2000000000L), data, 100, 5000), data));
         //System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
     }
 }

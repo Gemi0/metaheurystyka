@@ -1,5 +1,6 @@
 package algorithms.ABC.Bees.Scouts;
 
+import algorithms.ABC.ArtificialBeeColony;
 import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Flower;
 import algorithms.Utils;
@@ -29,15 +30,15 @@ public class Scouts extends Bee {
             Flower flower = new Flower(permutation, data);
             meadow.add(flower);
 
-            if (bestFlower == null || flower.getPermutationValue() < bestFlower.getPermutationValue()) {
-                bestFlower = flower;
+            if (ArtificialBeeColony.bestFlower == null || flower.getPermutationValue() < ArtificialBeeColony.bestFlower.getPermutationValue()) {
+                ArtificialBeeColony.bestFlower = flower;
             }
         }
         return meadow;
     }
 
     @Override
-    public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, Flower bestFlower, TSPData data) {
+    public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, TSPData data) {
         for (int i = 0; i < flowers.size(); i++) {
             if (flowers.get(i).getCounter() > maxCounter) {
                 int[] currentPermutation = flowers.get(i).getPermutation();
@@ -46,8 +47,8 @@ public class Scouts extends Bee {
                 flowers.get(i).setPermutation(newPermutation);
                 flowers.get(i).resetCounter();
 
-                if (flowers.get(i).getPermutationValue() < bestFlower.getPermutationValue()) {
-                    Bee.bestFlower = flowers.get(i);
+                if (flowers.get(i).getPermutationValue() < ArtificialBeeColony.bestFlower.getPermutationValue()) {
+                    ArtificialBeeColony.bestFlower = flowers.get(i);
                 }
             }
         }

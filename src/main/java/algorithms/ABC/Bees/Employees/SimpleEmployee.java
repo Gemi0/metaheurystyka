@@ -1,5 +1,6 @@
 package algorithms.ABC.Bees.Employees;
 
+import algorithms.ABC.ArtificialBeeColony;
 import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Flower;
 import algorithms.arrayTabu.neighborhoodBrowser.Util;
@@ -10,8 +11,7 @@ import java.util.ArrayList;
 public class SimpleEmployee extends Bee {
 
     @Override
-    public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, Flower bestFlower, TSPData data) {
-        Bee.bestFlower = bestFlower;
+    public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, TSPData data) {
         ArrayList<Flower> result = new ArrayList<>();
         for(Flower f : flowers) {
             int[] currentPermutation = f.getPermutation();
@@ -21,8 +21,8 @@ public class SimpleEmployee extends Bee {
 
             if (newFlower.getPermutationValue() < f.getPermutationValue()) {
                 result.add(newFlower);
-                if (newFlower.getPermutationValue() < bestFlower.getPermutationValue()) {
-                    Bee.bestFlower = newFlower;
+                if (newFlower.getPermutationValue() < ArtificialBeeColony.bestFlower.getPermutationValue()) {
+                    ArtificialBeeColony.bestFlower = newFlower;
                 }
             }
             else {

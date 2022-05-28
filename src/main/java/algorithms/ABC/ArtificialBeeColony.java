@@ -1,9 +1,7 @@
 package algorithms.ABC;
 
-import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Bees.Employees.SimpleEmployee;
 import algorithms.ABC.Bees.Onlookers.Onlookers;
-import algorithms.ABC.Bees.Onlookers.RouletteOnlooker;
 import algorithms.ABC.Bees.Onlookers.StochasticRoulette;
 import algorithms.ABC.Bees.Scouts.Scouts;
 import algorithms.arrayTabu.stopConditions.StopCondition;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 public class ArtificialBeeColony {
 
     public static ArrayList<Flower> meadow;
+    public static Flower bestFlower = null;
 
     public static int[] beeColony(StopCondition condition, TSPData data, int flowersNumber, int maxCounter) {
         SimpleEmployee simpleEmployee = new SimpleEmployee();
@@ -26,14 +25,14 @@ public class ArtificialBeeColony {
         long algorithmIteration = 0;
         long startTime = System.nanoTime();
         do {
-            meadow = simpleEmployee.sendBees(meadow, Bee.bestFlower , data);
+            meadow = simpleEmployee.sendBees(meadow , data);
 
-            meadow  = onlookers.sendBees(meadow, Bee.bestFlower, data);
+            meadow  = onlookers.sendBees(meadow, data);
 
-            meadow  = scouts.sendBees(meadow, Bee.bestFlower, data);
-            System.out.println(Bee.bestFlower.getPermutationValue());
+            meadow  = scouts.sendBees(meadow, data);
+            System.out.println(bestFlower.getPermutationValue());
         } while (!condition.shouldStop(algorithmIteration, System.nanoTime() - startTime));
 
-        return Bee.bestFlower.getPermutation();
+        return bestFlower.getPermutation();
     }
 }
