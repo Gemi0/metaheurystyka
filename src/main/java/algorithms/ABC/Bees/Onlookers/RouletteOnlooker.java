@@ -1,6 +1,5 @@
 package algorithms.ABC.Bees.Onlookers;
 
-import algorithms.ABC.Bees.Bee;
 import algorithms.ABC.Bees.Employees.SimpleEmployee;
 import algorithms.ABC.Flower;
 import main.TSPData;
@@ -8,11 +7,11 @@ import main.TSPData;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class RouletteOnlooker extends Bee {
+public class RouletteOnlooker extends Onlookers {
 
-    TreeMap<Double, Flower> probabilitiesMap = new TreeMap<Double, Flower>() {};
+    TreeMap<Double, Flower> probabilitiesMap = new TreeMap<>();
 
-    private void calculateProbabilities(ArrayList<Flower> flowers) {
+    protected void calculateProbabilities(ArrayList<Flower> flowers) {
         double sum =0;
         for (Flower f : flowers) {
             sum += 1 / f.getPermutationValue();
@@ -24,7 +23,6 @@ public class RouletteOnlooker extends Bee {
             lastVal = (1/flowers.get(i).getPermutationValue())/sum + lastVal;
         }
     }
-
 
     @Override
     public ArrayList<Flower> sendBees(ArrayList<Flower> flowers, Flower bestFlower, TSPData data) {
@@ -44,7 +42,7 @@ public class RouletteOnlooker extends Bee {
             result.add(probabilitiesMap.get(key));
         }
         result = employee.sendBees(result, bestFlower, data);
-        Bee.bestFlower = employee.getBestFlower();
         return result;
     }
+
 }

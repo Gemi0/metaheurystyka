@@ -22,6 +22,10 @@ public class Flower {
         this.permutation = permutation;
     }
 
+    public void resetCounter() {
+        this.counter = 0;
+    }
+
     public void increaseCounter() {
         counter++;
     }

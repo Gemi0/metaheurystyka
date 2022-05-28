@@ -44,6 +44,7 @@ public class Scouts extends Bee {
                 int[] newPermutation = flowers.get(i).getPermutation().clone();
                 Util.invert(currentPermutation, newPermutation,rnd.nextInt(currentPermutation.length), rnd.nextInt(currentPermutation.length));
                 flowers.get(i).setPermutation(newPermutation);
+                flowers.get(i).resetCounter();
 
                 if (flowers.get(i).getPermutationValue() < bestFlower.getPermutationValue()) {
                     Bee.bestFlower = flowers.get(i);
