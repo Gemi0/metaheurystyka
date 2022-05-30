@@ -47,7 +47,7 @@ public class GeneticScout extends Scouts{
         return flowers;
     }
 
-    public static void PMXCrossbreeding(Flower flower1, Flower flower2) {
+    public void PMXCrossbreeding(Flower flower1, Flower flower2) {
         int[] flower1Arr = flower1.getPermutation();
         int[] flower2Arr = flower2.getPermutation();
         Integer[] flower2Copy = Arrays.stream(flower2Arr).boxed().toArray( Integer[]::new );
@@ -170,13 +170,11 @@ public class GeneticScout extends Scouts{
             }
         }
 
-        System.out.println(Arrays.toString(arr1));
-        System.out.println(Arrays.toString(arr2));
         flower1.setPermutation(arr1);
         flower2.setPermutation(arr2);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\berlin52.xml";
         String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\coords\\berlin52.tsp";
         TSPData data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
@@ -187,5 +185,5 @@ public class GeneticScout extends Scouts{
         Flower flower2 = new Flower(b, data);
 
         PMXCrossbreeding(flower1, flower2);
-    }
+    }*/
 }
