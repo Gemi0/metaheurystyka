@@ -58,12 +58,8 @@ public class GeneticScout extends Scouts{
         Map<Integer, Integer> map2c = new TreeMap<>();
         Random rnd = new Random();
 
-        //int pivot1 = rnd.nextInt(flower1Arr.length - 2);
-        //int pivot2 = rnd.nextInt(pivot1 + 1, flower1Arr.length);
-        int pivot1 = 2;
-        int pivot2 = 5;
-        System.out.println(pivot1);
-        System.out.println(pivot2);
+        int pivot1 = rnd.nextInt(flower1Arr.length - 2);
+        int pivot2 = rnd.nextInt(pivot1 + 1, flower1Arr.length);
         int[] arr1 = new int[flower1Arr.length];
         int[] arr2 = new int[flower1Arr.length];
 
