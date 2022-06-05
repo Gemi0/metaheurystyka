@@ -32,7 +32,7 @@ public class ArtificialBeeColony {
             meadow  = onlookers.sendBees(meadow, data);
 
             meadow  = scouts.sendBees(meadow, data);
-            System.out.println(bestFlower.getPermutationValue());
+            //System.out.println(bestFlower.getPermutationValue());
         } while (!condition.shouldStop(algorithmIteration, System.nanoTime() - startTime));
 
         return bestFlower.getPermutation();

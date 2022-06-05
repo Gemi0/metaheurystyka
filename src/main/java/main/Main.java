@@ -1,14 +1,18 @@
 package main;
 
 import algorithms.ABC.ArtificialBeeColony;
-import algorithms.TwoOpt;
 import algorithms.Utils;
+import algorithms.arrayTabu.Tabu;
+import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.stopConditions.TimeStopCondition;
+import algorithms.newimpl.multiABC.MultiArtificialBeeColony;
+import algorithms.newimpl.singleABC.SingleArtificialBeeColony;
 
 public class Main {
 
-    public static void main(String[] args) {
-        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\berlin52.xml";
+    public static void main(String[] args) throws InterruptedException {
+        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\dsj1000.xml";
         String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\coords\\berlin52.tsp";
         TSPData data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
         System.out.println(data.distance.length);
@@ -41,9 +45,14 @@ public class Main {
         //System.out.println("ArrayTabuSwapAcc: " + Utils.routeLength(BasicTabu.tabuSearchSwapAcc(startPermutation, data, 100, 1200000000L), data));
         //System.out.println("ArrayTabuInsertAcc: " + Utils.routeLength(BasicTabu.tabuSearchInsertAcc(startPermutation, data, 100, 2000000000L), data));
 
-        //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearchInvert(startPermutation, data, 100, 200000000L), data));
+        //System.out.println("ArrayTabuInvert: " + Utils.routeLength(Tabu.tabuSearch(new InvertBrowser(), new TimeStopCondition(5000000000L), startPermutation, data, 500, false, 50000), data));
         //System.out.println("ArrayTabuInvert: " + Utils.routeLength(BasicTabu.tabuSearch(new InvertMultithreadedBrowser(), startPermutation, data, 100, 200000000L), data));
-        System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(20000000000L), data, 1000, 500), data));
+        //System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
+        //System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
+        //System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
+        System.out.println(Utils.routeLength(Tabu.tabuSearch(new InvertMultithreadedBrowser(), new TimeStopCondition(10000000000L), startPermutation, data, 500, false, 500), data));
+        System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 5000), data));
+        System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 5000), data));
         //System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
     }
 }
