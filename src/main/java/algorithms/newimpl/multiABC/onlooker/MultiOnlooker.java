@@ -37,7 +37,7 @@ public abstract class MultiOnlooker {
         }
         */
 
-        rouletteResults.parallelStream().forEach(multiEmployee::processFlower);
+        rouletteResults.parallelStream().forEach(multiEmployee::processFlowerSynchronized);
 
         /*
         for(MultiFlower flower : rouletteResults) {
