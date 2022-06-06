@@ -12,7 +12,7 @@ import algorithms.newimpl.singleABC.SingleArtificialBeeColony;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\dsj1000.xml";
+        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\berlin52.xml";
         String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\coords\\berlin52.tsp";
         TSPData data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
         System.out.println(data.distance.length);
@@ -50,9 +50,9 @@ public class Main {
         //System.out.println(Utils.routeLength(ArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
         //System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
         //System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 1000, 500), data));
-        System.out.println(Utils.routeLength(Tabu.tabuSearch(new InvertMultithreadedBrowser(), new TimeStopCondition(10000000000L), startPermutation, data, 500, false, 500), data));
-        System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 5000), data));
-        System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 5000), data));
+        //System.out.println(Utils.routeLength(Tabu.tabuSearch(new InvertMultithreadedBrowser(), new TimeStopCondition(10000000000L), startPermutation, data, 500, false, 500), data));
+        System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 500), data));
+        //System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(10000000000L), data, 10000, 5000), data));
         //System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
     }
 }

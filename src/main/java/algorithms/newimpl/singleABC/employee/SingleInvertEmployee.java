@@ -8,8 +8,8 @@ import main.TSPData;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SingleRandomEmployee extends SingleEmployee {
-    public SingleRandomEmployee(SingleMeadow singleMeadow, TSPData data) {
+public class SingleInvertEmployee extends SingleEmployee {
+    public SingleInvertEmployee(SingleMeadow singleMeadow, TSPData data) {
         super(singleMeadow, data);
     }
 
@@ -18,7 +18,6 @@ public class SingleRandomEmployee extends SingleEmployee {
         int[] currentPermutation = flower.getPermutation();
         int[] newPermutation = new int[currentPermutation.length];
 
-        //TODO: Generalize
         Util.invert(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
         double newRouteLenght = Utils.routeLength(newPermutation, data);
 

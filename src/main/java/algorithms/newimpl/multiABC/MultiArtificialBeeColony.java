@@ -3,7 +3,7 @@ package algorithms.newimpl.multiABC;
 import algorithms.Utils;
 import algorithms.arrayTabu.stopConditions.StopCondition;
 import algorithms.newimpl.multiABC.employee.MultiEmployee;
-import algorithms.newimpl.multiABC.employee.MultiRandomEmployee;
+import algorithms.newimpl.multiABC.employee.MultiInvertEmployee;
 import algorithms.newimpl.multiABC.onlooker.MultiOnlooker;
 import algorithms.newimpl.multiABC.onlooker.MultiStochasticOnlooker;
 import algorithms.newimpl.multiABC.scout.MultiRandomScout;
@@ -16,7 +16,7 @@ public class MultiArtificialBeeColony {
 
     public static int[] beeColony(StopCondition condition, TSPData data, int flowersNumber, int maxRetriesCounter) {
         MultiMeadow multiMeadow = new MultiMeadow();
-        MultiEmployee employee = new MultiRandomEmployee(multiMeadow, data);
+        MultiEmployee employee = new MultiInvertEmployee(multiMeadow, data);
         MultiOnlooker onlooker = new MultiStochasticOnlooker(multiMeadow, data, employee);
         MultiScout scout = new MultiRandomScout(multiMeadow, data, maxRetriesCounter);
 

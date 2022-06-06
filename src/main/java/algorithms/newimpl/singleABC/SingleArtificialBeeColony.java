@@ -3,7 +3,7 @@ package algorithms.newimpl.singleABC;
 import algorithms.Utils;
 import algorithms.arrayTabu.stopConditions.StopCondition;
 import algorithms.newimpl.singleABC.employee.SingleEmployee;
-import algorithms.newimpl.singleABC.employee.SingleRandomEmployee;
+import algorithms.newimpl.singleABC.employee.SingleInvertEmployee;
 import algorithms.newimpl.singleABC.onlooker.SingleOnlooker;
 import algorithms.newimpl.singleABC.onlooker.SingleStochasticOnlooker;
 import algorithms.newimpl.singleABC.scout.SingleRandomScout;
@@ -16,7 +16,7 @@ public class SingleArtificialBeeColony {
 
     public static int[] beeColony(StopCondition condition, TSPData data, int flowersNumber, int maxRetriesCounter) {
         SingleMeadow singleMeadow = new SingleMeadow();
-        SingleEmployee employee = new SingleRandomEmployee(singleMeadow, data);
+        SingleEmployee employee = new SingleInvertEmployee(singleMeadow, data);
         SingleOnlooker onlooker = new SingleStochasticOnlooker(singleMeadow, data, employee);
         SingleScout scout = new SingleRandomScout(singleMeadow, data, maxRetriesCounter);
 
