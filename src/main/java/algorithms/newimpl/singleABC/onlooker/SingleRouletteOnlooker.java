@@ -6,6 +6,7 @@ import algorithms.newimpl.singleABC.SingleMeadow;
 import algorithms.newimpl.singleABC.employee.SingleEmployee;
 import main.TSPData;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,6 +45,28 @@ public class SingleRouletteOnlooker extends SingleOnlooker{
         for (int i = 1; i < singleMeadow.getFlowers().size(); i++) {
             probabilitiesMap.put((1/singleMeadow.getFlowers().get(i).getPermutationValue())/sum + lastVal, singleMeadow.getFlowers().get(i));
             lastVal = (1/singleMeadow.getFlowers().get(i).getPermutationValue())/sum + lastVal;
+        }
+    }
+
+    @Override
+    public void sendBees() {
+        ArrayList<SingleFlower> rouletteResults = new ArrayList<>();
+        calculateProbabilities();
+        for(int i = 0; i < singleMeadow.getFlowers().size(); i++) {
+            rouletteResults.add(roulette());
+        }
+
+        //TODO: Take care of overlapping
+        /*
+        HashMap<MultiFlower, Integer> map = new HashMap<>();
+        for(MultiFlower flower : rouletteResults) {
+            Integer integer = map.get(flower);
+            map.put(flower, integer == null ? 1 : integer + 1);
+        }
+        */
+
+        for(SingleFlower flower : rouletteResults) {
+            singleEmployee.processFlower(flower);
         }
     }
 }
