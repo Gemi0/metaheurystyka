@@ -2,6 +2,7 @@ package algorithms.newimpl.singleABC;
 
 import algorithms.Utils;
 import algorithms.arrayTabu.stopConditions.StopCondition;
+import algorithms.newimpl.singleABC.employee.SingleAcceleratedInvertEmployee;
 import algorithms.newimpl.singleABC.employee.SingleEmployee;
 import algorithms.newimpl.singleABC.employee.SingleInvertEmployee;
 import algorithms.newimpl.singleABC.onlooker.SingleOnlooker;

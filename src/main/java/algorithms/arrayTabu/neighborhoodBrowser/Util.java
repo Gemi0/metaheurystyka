@@ -50,8 +50,8 @@ public class Util {
             retVal = currentPermutationValue - data.distance[currentPermutation[data.distance.length - 1]][currentPermutation[i]] + data.distance[currentPermutation[data.distance.length - 1]][currentPermutation[j]] - data.distance[currentPermutation[j]][currentPermutation[j + 1]] + data.distance[currentPermutation[i]][currentPermutation[j + 1]];
         } else
             retVal = currentPermutationValue;
-        //return Math.round(retVal * 100) / 100.0;
-        return Math.ceil(retVal);
+        return Math.round(retVal * 10000) / 10000.0;
+        //return Math.ceil(retVal);
     }
     public static double updateSwapValue(int[] currentPermutation, TSPData data, double currentPermutationValue, int i, int j) {
         if (data.distance.length < 2)
@@ -88,6 +88,7 @@ public class Util {
                 + data.distance[currentPermutation[j]][currentPermutation[(i + 1) % currentPermutation.length]]
                 + data.distance[currentPermutation[(j - 1 + currentPermutation.length) % currentPermutation.length]][currentPermutation[i]]
                 + data.distance[currentPermutation[i]][currentPermutation[(j + 1) % currentPermutation.length]]);
-        return Math.ceil(currentPermutationValue);
+        return Math.round(currentPermutationValue * 10000) / 10000.0;
+        //return Math.ceil(currentPermutationValue);
     }
 }
