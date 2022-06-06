@@ -18,7 +18,13 @@ public class SingleInsertEmployee extends SingleEmployee {
         int[] currentPermutation = flower.getPermutation();
         int[] newPermutation = new int[currentPermutation.length];
 
-        Util.insert(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
+        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+
+        int a = Math.min(x, y);
+        int b = Math.max(x, y);
+
+        Util.insert(currentPermutation, newPermutation, a, b);
         double newRouteLenght = Utils.routeLength(newPermutation, data);
 
         if (newRouteLenght < flower.getPermutationValue()) {

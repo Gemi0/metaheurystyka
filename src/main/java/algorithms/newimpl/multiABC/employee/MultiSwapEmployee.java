@@ -21,15 +21,26 @@ public class MultiSwapEmployee extends MultiEmployee {
         int[] currentPermutation = flower.getPermutation();
         int[] newPermutation = new int[currentPermutation.length];
 
-        Util.swap(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
+        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+
+        int a = Math.min(x, y);
+        int b = Math.max(x, y);
+
+        Util.swap(currentPermutation, newPermutation, a, b);
         double newRouteLenght = Utils.routeLength(newPermutation, data);
 
         if (newRouteLenght < flower.getPermutationValue()) {
             flower.setPermutation(newPermutation, newRouteLenght);
             if (newRouteLenght < multiMeadow.getBestFlower().getPermutationValue()) {
-                multiMeadow.setBestFlower(flower);
+                synchronized (multiMeadow) {
+                    if (newRouteLenght < multiMeadow.getBestFlower().getPermutationValue()) {
+                        multiMeadow.setBestFlower(flower);
+                    }
+                }
             }
-        } else {
+        }
+        else {
             flower.increaseCounter();
         }
     }
@@ -39,7 +50,13 @@ public class MultiSwapEmployee extends MultiEmployee {
         int[] currentPermutation = flower.getPermutation();
         int[] newPermutation = new int[currentPermutation.length];
 
-        Util.swap(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
+        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+
+        int a = Math.min(x, y);
+        int b = Math.max(x, y);
+
+        Util.swap(currentPermutation, newPermutation, a, b);
         double newRouteLenght = Utils.routeLength(newPermutation, data);
 
         if (newRouteLenght < flower.getPermutationValue()) {

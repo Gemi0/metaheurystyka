@@ -51,10 +51,16 @@ public class SingleVariableEmployee extends MultiEmployee {
         int[] currentPermutation = flower.getPermutation();
         int[] newPermutation = new int[currentPermutation.length];
 
+        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
+
+        int a = Math.min(x, y);
+        int b = Math.max(x, y);
+
         switch (rnd.nextInt(3)) {
-            case(0): Util.invert(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
-            case(1): Util.insert(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
-            case(2): Util.swap(currentPermutation, newPermutation, ThreadLocalRandom.current().nextInt(currentPermutation.length), ThreadLocalRandom.current().nextInt(currentPermutation.length));
+            case(0): Util.invert(currentPermutation, newPermutation, a, b);
+            case(1): Util.insert(currentPermutation, newPermutation, a, b);
+            case(2): Util.swap(currentPermutation, newPermutation, a, b);
 
         }
         double newRouteLenght = Utils.routeLength(newPermutation, data);
