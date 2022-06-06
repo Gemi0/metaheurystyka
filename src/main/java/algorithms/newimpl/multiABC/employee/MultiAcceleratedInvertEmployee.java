@@ -1,5 +1,6 @@
 package algorithms.newimpl.multiABC.employee;
 
+import algorithms.Utils;
 import algorithms.arrayTabu.neighborhoodBrowser.Util;
 import algorithms.newimpl.multiABC.MultiFlower;
 import algorithms.newimpl.multiABC.MultiMeadow;
@@ -28,11 +29,15 @@ public class MultiAcceleratedInvertEmployee extends MultiEmployee {
         if (newValue < flower.getPermutationValue()) {
             Util.invert(currentPermutation, newPermutation, a ,b);
             flower.setPermutation(newPermutation, newValue);
-
             if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
-                multiMeadow.setBestFlower(flower);
+                synchronized (multiMeadow) {
+                    if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
+                        multiMeadow.setBestFlower(flower);
+                    }
+                }
             }
-        } else {
+        }
+        else {
             flower.increaseCounter();
         }
     }
