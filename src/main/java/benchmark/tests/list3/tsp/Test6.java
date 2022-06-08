@@ -43,7 +43,7 @@ public class Test6 {
             File file2 = new File(OUTPUT_PATH + File.separator + problemNames.get(i) + ".out");
             if (file2.exists())
                 file2.delete();
-            File file3 = new File(OUTPUT_PATH + File.separator + "-" + problemNames.get(i) + ".info");
+            File file3 = new File(OUTPUT_PATH + File.separator + problemNames.get(i) + ".info");
             if (file3.exists())
                 file3.delete();
 
