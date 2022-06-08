@@ -19,5 +19,9 @@ public abstract class MultiEmployee {
     }
 
     public abstract void processFlower(MultiFlower flower);
-    public abstract void processFlowerSynchronized(MultiFlower flower);
+    public void processFlowerSynchronized(MultiFlower flower) {
+        synchronized (flower){
+            processFlower(flower);
+        }
+    }
 }

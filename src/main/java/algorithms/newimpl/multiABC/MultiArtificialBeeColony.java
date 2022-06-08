@@ -10,10 +10,13 @@ import algorithms.newimpl.multiABC.onlooker.MultiOnlooker;
 import algorithms.newimpl.multiABC.onlooker.MultiStochasticOnlooker;
 import algorithms.newimpl.multiABC.scout.MultiRandomScout;
 import algorithms.newimpl.multiABC.scout.MultiScout;
+import algorithms.newimpl.singleABC.SingleFlower;
 import main.TSPData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MultiArtificialBeeColony {
 
@@ -22,7 +25,7 @@ public class MultiArtificialBeeColony {
     public static int[] beeColony(StopCondition condition, TSPData data, int flowersNumber, int maxRetriesCounter) {
         snapshotDataArrayList.clear();
         MultiMeadow multiMeadow = new MultiMeadow();
-        MultiEmployee employee = new MultiInvertEmployee(multiMeadow, data);
+        MultiEmployee employee = new MultiAcceleratedInvertEmployee(multiMeadow, data);
         MultiOnlooker onlooker = new MultiStochasticOnlooker(multiMeadow, data, employee);
         MultiScout scout = new MultiRandomScout(multiMeadow, data, maxRetriesCounter);
 
@@ -39,7 +42,6 @@ public class MultiArtificialBeeColony {
             runtime = System.nanoTime() - startTime;
             snapshotDataArrayList.add(new SnapshotData(algorithmIteration, runtime, multiMeadow.getBestFlower().getPermutationValue()));
         } while(!condition.shouldStop(algorithmIteration, runtime));
-
         return multiMeadow.getBestFlower().getPermutation();
     }
 

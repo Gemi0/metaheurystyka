@@ -44,38 +44,4 @@ public class MultiAcceleratedSwapEmployee extends MultiEmployee {
             flower.increaseCounter();
         }
     }
-
-    @Override
-    public void processFlowerSynchronized(MultiFlower flower) {
-        int[] currentPermutation = flower.getPermutation();
-
-
-        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-
-        int a = Math.min(x, y);
-        int b = Math.max(x, y);
-
-        double newValue = Util.updateSwapValue(currentPermutation, data, flower.getPermutationValue(), a, b);
-
-        if (newValue < flower.getPermutationValue()) {
-            synchronized (flower) {
-                if (newValue < flower.getPermutationValue()) {
-                    int[] newPermutation = new int[currentPermutation.length];
-                    Util.swap(currentPermutation, newPermutation, a ,b);
-                    flower.setPermutation(newPermutation, newValue);
-                    if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
-                        synchronized (multiMeadow) {
-                            if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
-                                multiMeadow.setBestFlower(flower);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else {
-            flower.increaseCounter();
-        }
-    }
 }

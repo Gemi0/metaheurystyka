@@ -56,42 +56,4 @@ public class MultiVariableEmployee extends MultiEmployee {
             flower.increaseCounter();
         }
     }
-
-    @Override
-    public void processFlowerSynchronized(MultiFlower flower) {
-        int[] currentPermutation = flower.getPermutation();
-        int[] newPermutation = new int[currentPermutation.length];
-
-        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-
-        int a = Math.min(x, y);
-        int b = Math.max(x, y);
-
-        switch (rnd.nextInt(3)) {
-            case(0): Util.invert(currentPermutation, newPermutation, a, b);
-            case(1): Util.insert(currentPermutation, newPermutation, a, b);
-            case(2): Util.swap(currentPermutation, newPermutation, a, b);
-
-        }
-        double newRouteLenght = Utils.routeLength(newPermutation, data);
-
-        if (newRouteLenght < flower.getPermutationValue()) {
-            synchronized (flower) {
-                if (newRouteLenght < flower.getPermutationValue()) {
-                    flower.setPermutation(newPermutation, newRouteLenght);
-                    if (newRouteLenght < multiMeadow.getBestFlower().getPermutationValue()) {
-                        synchronized (multiMeadow) {
-                            if (newRouteLenght < multiMeadow.getBestFlower().getPermutationValue()) {
-                                multiMeadow.setBestFlower(flower);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else {
-            flower.increaseCounter();
-        }
-    }
 }

@@ -30,7 +30,7 @@ public class MultiAcceleratedInvertEmployee extends MultiEmployee {
 
         if (newValue < flower.getPermutationValue()) {
             int[] newPermutation = new int[currentPermutation.length];
-            Util.invert(currentPermutation, newPermutation, a ,b);
+            Util.invert(currentPermutation, newPermutation, a, b);
             flower.setPermutation(newPermutation, newValue);
             if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
                 synchronized (multiMeadow) {
@@ -39,41 +39,7 @@ public class MultiAcceleratedInvertEmployee extends MultiEmployee {
                     }
                 }
             }
-        }
-        else {
-            flower.increaseCounter();
-        }
-    }
-
-    @Override
-    public void processFlowerSynchronized(MultiFlower flower) {
-        int[] currentPermutation = flower.getPermutation();
-
-        int x = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-        int y = ThreadLocalRandom.current().nextInt(currentPermutation.length);
-
-        int a = Math.min(x, y);
-        int b = Math.max(x, y);
-
-        double newValue = Util.updateInvertValue(currentPermutation, data, flower.getPermutationValue(), a, b);
-
-        if (newValue < flower.getPermutationValue()) {
-            synchronized (flower) {
-                if (newValue < flower.getPermutationValue()) {
-                    int[] newPermutation = new int[currentPermutation.length];
-                    Util.invert(currentPermutation, newPermutation, a ,b);
-                    flower.setPermutation(newPermutation, newValue);
-                    if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
-                        synchronized (multiMeadow) {
-                            if (newValue < multiMeadow.getBestFlower().getPermutationValue()) {
-                                multiMeadow.setBestFlower(flower);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else {
+        } else {
             flower.increaseCounter();
         }
     }
