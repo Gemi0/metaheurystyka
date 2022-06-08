@@ -34,7 +34,7 @@ public class Main {
         System.out.println("NeighborExtended: " + Utils.routeLength(NeighborExtended.neighborExtended(data), data));
         System.out.println("Accelerated2OPT: " + Utils.routeLength(TwoOpt.acceleratedTwoOpt(data, startPermutation), data));
         System.out.println("NeighborExtended->2OPT: " + Utils.routeLength(TwoOpt.acceleratedTwoOpt(data, NeighborExtended.neighborExtended(data)), data));
-        System.out.println("Bees: " + Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(60000000000L), data, 1000, (data.distance.length >= 200 ? 100000 : 10000)), data));
+        System.out.println("Bees: " + Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(60000000000L * 5), data, 1000, (data.distance.length >= 200 ? 100000 : 10000)), data));
 
         //System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
         /*System.out.println("KRandom->TabuSearch: " + Utils.routeLength(TabuSearch.tabuSearch(data, KRandom.kRandom(data, 10000)), data));
