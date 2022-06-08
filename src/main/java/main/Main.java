@@ -5,6 +5,7 @@ import algorithms.ABC.ArtificialBeeColony;
 import algorithms.arrayTabu.Tabu;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.accelerated.AcceleratedInvertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
+import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.accelerated.AcceleratedInvertBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.stopConditions.TimeStopCondition;
 import algorithms.newimpl.multiABC.MultiArtificialBeeColony;
@@ -13,7 +14,7 @@ import algorithms.newimpl.singleABC.SingleArtificialBeeColony;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\rd100.xml";
+        String distanceFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\dsj1000.xml";
         String coordsFilePath = System.getProperty("user.home") + "\\IdeaProjects\\metaheurystyka\\src\\main\\java\\data\\symetric\\coords\\berlin52.tsp";
         TSPData data = Loader.loadWithCoords(distanceFilePath, coordsFilePath);
         System.out.println(data.distance.length);
@@ -56,7 +57,7 @@ public class Main {
         //System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 10000, 500), data));
         //System.out.println("2OPT: " + Utils.routeLength(TwoOpt.twoOpt(data, startPermutation), data));
         //System.out.println(Utils.routeLength(SingleArtificialBeeColony.beeColony(new TimeStopCondition(5000000000L), data, 10000,500), data));
-        System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(30000000000L), data, 8192,512), data));
+        System.out.println(Utils.routeLength(MultiArtificialBeeColony.beeColony(new TimeStopCondition(60000000000L), data, 1024,8192), data));
         System.out.println(Utils.routeLength(Tabu.tabuSearch(new AcceleratedInvertMultithreadedBrowser(), new TimeStopCondition(30000000000L), startPermutation, data, 50, false, 500), data));
     }
 }
