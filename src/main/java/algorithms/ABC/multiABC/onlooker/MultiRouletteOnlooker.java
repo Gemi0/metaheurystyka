@@ -1,6 +1,5 @@
 package algorithms.ABC.multiABC.onlooker;
 
-import algorithms.ABC.Flower;
 import algorithms.ABC.multiABC.MultiFlower;
 import algorithms.ABC.multiABC.MultiMeadow;
 import algorithms.ABC.multiABC.employee.MultiEmployee;

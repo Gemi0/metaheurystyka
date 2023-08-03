@@ -1,16 +1,16 @@
-package algorithms.newimpl.multiABC;
+package algorithms.ABC.multiABC;
 
 import algorithms.Utils;
 import algorithms.arrayTabu.SnapshotData;
 import algorithms.arrayTabu.stopConditions.StopCondition;
-import algorithms.newimpl.multiABC.employee.MultiAcceleratedInvertEmployee;
-import algorithms.newimpl.multiABC.employee.MultiEmployee;
-import algorithms.newimpl.multiABC.employee.MultiInvertEmployee;
-import algorithms.newimpl.multiABC.onlooker.MultiOnlooker;
-import algorithms.newimpl.multiABC.onlooker.MultiStochasticOnlooker;
-import algorithms.newimpl.multiABC.scout.MultiRandomScout;
-import algorithms.newimpl.multiABC.scout.MultiScout;
-import algorithms.newimpl.singleABC.SingleFlower;
+import algorithms.ABC.multiABC.employee.MultiAcceleratedInvertEmployee;
+import algorithms.ABC.multiABC.employee.MultiEmployee;
+import algorithms.ABC.multiABC.employee.MultiInvertEmployee;
+import algorithms.ABC.multiABC.onlooker.MultiOnlooker;
+import algorithms.ABC.multiABC.onlooker.MultiStochasticOnlooker;
+import algorithms.ABC.multiABC.scout.MultiRandomScout;
+import algorithms.ABC.multiABC.scout.MultiScout;
+import algorithms.ABC.singleABC.SingleFlower;
 import main.TSPData;
 
 import java.util.ArrayList;

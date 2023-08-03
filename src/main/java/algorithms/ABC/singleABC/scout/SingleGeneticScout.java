@@ -1,7 +1,5 @@
 package algorithms.ABC.singleABC.scout;
 
-import algorithms.ABC.ArtificialBeeColony;
-import algorithms.ABC.Flower;
 import algorithms.Utils;
 import algorithms.ABC.singleABC.SingleArtificialBeeColony;
 import algorithms.ABC.singleABC.SingleFlower;

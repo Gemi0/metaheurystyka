@@ -2,7 +2,7 @@ package benchmark.tests.list3.tsp;
 
 import algorithms.arrayTabu.SnapshotData;
 import algorithms.arrayTabu.stopConditions.TimeStopCondition;
-import algorithms.newimpl.multiABC.MultiArtificialBeeColony;
+import algorithms.ABC.multiABC.MultiArtificialBeeColony;
 import main.Loader;
 import main.TSPData;
 

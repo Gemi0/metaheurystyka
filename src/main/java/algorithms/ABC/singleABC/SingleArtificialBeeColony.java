@@ -1,16 +1,16 @@
-package algorithms.newimpl.singleABC;
+package algorithms.ABC.singleABC;
 
 import algorithms.Utils;
 import algorithms.arrayTabu.SnapshotData;
 import algorithms.arrayTabu.stopConditions.StopCondition;
-import algorithms.newimpl.singleABC.employee.*;
-import algorithms.newimpl.singleABC.onlooker.SingleOnlooker;
-import algorithms.newimpl.singleABC.onlooker.SingleRouletteOnlooker;
-import algorithms.newimpl.singleABC.onlooker.SingleStochasticOnlooker;
-import algorithms.newimpl.singleABC.scout.SingleBestGeneticScout;
-import algorithms.newimpl.singleABC.scout.SingleGeneticScout;
-import algorithms.newimpl.singleABC.scout.SingleRandomScout;
-import algorithms.newimpl.singleABC.scout.SingleScout;
+import algorithms.ABC.singleABC.employee.*;
+import algorithms.ABC.singleABC.onlooker.SingleOnlooker;
+import algorithms.ABC.singleABC.onlooker.SingleRouletteOnlooker;
+import algorithms.ABC.singleABC.onlooker.SingleStochasticOnlooker;
+import algorithms.ABC.singleABC.scout.SingleBestGeneticScout;
+import algorithms.ABC.singleABC.scout.SingleGeneticScout;
+import algorithms.ABC.singleABC.scout.SingleRandomScout;
+import algorithms.ABC.singleABC.scout.SingleScout;
 import main.TSPData;
 
 import java.util.ArrayList;

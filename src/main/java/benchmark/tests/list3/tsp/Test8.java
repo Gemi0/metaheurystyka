@@ -5,7 +5,7 @@ import algorithms.arrayTabu.Tabu;
 import algorithms.arrayTabu.neighborhoodBrowser.multithreaded.basic.InvertMultithreadedBrowser;
 import algorithms.arrayTabu.neighborhoodBrowser.singlethreaded.basic.InvertBrowser;
 import algorithms.arrayTabu.stopConditions.TimeStopCondition;
-import algorithms.newimpl.multiABC.MultiArtificialBeeColony;
+import algorithms.ABC.multiABC.MultiArtificialBeeColony;
 import main.Loader;
 import main.TSPData;
 
